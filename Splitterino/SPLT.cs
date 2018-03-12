@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,15 +32,26 @@ namespace Splitterino
 			Game g = ReadFile(path);
 			if(g != null)
 			{
-				Console.WriteLine("New Game Added!");
-				Console.WriteLine("\tName: " + g.GetName());
-				Console.WriteLine("\tCategory: " + g.CategoryList[0].Name);
-				Console.WriteLine("\tSplits: ");
+                /*
+				MainWindow.instance.GameTitle.Text = ("New Game Added!");
+                MainWindow.instance.GameTitle.Text += ("\tName: " + g.GetName() + "\n");
+                MainWindow.instance.GameTitle.Text += ("\tCategory: " + g.CategoryList[0].Name);
+                MainWindow.instance.GameTitle.Text += ("\tSplits: ");
 				foreach(Split s in g.CategoryList[0].SplitList)
 				{
-					Console.WriteLine("\t\t" + s.GetTitle());
+                    MainWindow.instance.GameTitle.Text += ("\t\t" + s.GetTitle());
 				}
-			}
+                */
+
+                Debug.WriteLine("New Game Added!");
+                Debug.WriteLine("\tName: " + g.GetName() + "\n");
+                Debug.WriteLine("\tCategory: " + g.CategoryList[0].Name);
+                Debug.WriteLine("\tSplits: ");
+                foreach (Split s in g.CategoryList[0].SplitList)
+                {
+                    Debug.WriteLine("\t\t" + s.GetTitle());
+                }
+            }
 		}
 
 		/// <summary>
@@ -81,13 +93,14 @@ namespace Splitterino
 			Category cat = new Category(g, "");
 
 			g.CategoryList.Add(cat);
-
-			// Loop through lines
-			foreach(string row in text)
+            Debug.WriteLine("LINES" + text.Length);
+            // Loop through lines
+            foreach (string row in text)
 			{
 				// Loop through characters
 				foreach (char c in row)
 				{
+
 					// TODO: if starts with '#'
 					// ignore # 
 					if (c == '#')
@@ -95,12 +108,8 @@ namespace Splitterino
 					switch(_state)
 					{
 						case 0:
-							if(c != ' ')
-							{
-								cur_key += c;
-								continue;
-							}
-							else if(c == '=')
+                            
+							if(c == '=')
 							{
 								if(cur_key.ToUpper() == "SPLITS")
 								{
@@ -108,9 +117,15 @@ namespace Splitterino
 									continue;
 								}
 								_state = 1;
+                                Debug.WriteLine("CURRENT STATE" + _state);
 								continue;
 							}
-							break;
+                            else if (c != ' ')
+                            {
+                                cur_key += c;
+                                continue;
+                            }
+                            break;
 						case 1:
 							cur_val += c;
 							break;
@@ -138,7 +153,7 @@ namespace Splitterino
 						if (cur_val != "")
 						{
 							// TODO: uncomment sitten kun console on string
-							//g.SetConsole(cur_val);
+							g.SetConsole(cur_val);
 						}
 						break;
 					case "CATEGORY":
@@ -163,12 +178,12 @@ namespace Splitterino
 				// set default state
 				_state = 0;
 			}
-			if(g.GetName() != "" && g.GetConsole() != "" && cat.Name != "")
-			{
+			//if(g.GetName() != "" && g.GetConsole() != "" && cat.Name != "")
+			//{
 				return g;
-			}
+			//}
 
-			return null;
+			//return null;
 		}
 	}
 }

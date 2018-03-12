@@ -17,10 +17,11 @@ using System.Windows.Threading;
 
 namespace Splitterino
 {
+
     public partial class MainWindow : Window
     {
-		
         //timer
+        public static MainWindow instance;
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
@@ -28,6 +29,8 @@ namespace Splitterino
         {
             InitializeComponent();
             dt.Tick += new EventHandler(dt_Tick);
+            instance = this;
+            SPLT.ReadAndPrint(@"D:\testi.splt");
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
 
