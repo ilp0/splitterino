@@ -17,6 +17,10 @@ namespace Splitterino
             SetConsole(c);
             SetCategory(cat);
         }
+		public Game ()
+		{
+			// important merge, delete this comment
+		}
         private List<Category> categoryList = new List<Category>();
         public List<Category> CategoryList { get => categoryList; set => categoryList = value; }
         private string name;
