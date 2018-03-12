@@ -11,11 +11,10 @@ namespace Splitterino
     /// </summary>
     public class Game
     {
-        public Game(string n, Console c, Category cat)
+        public Game(string n, Console c)
         {
             SetName(n);
             SetConsole(c);
-            SetCategory(cat);
         }
 		public Game ()
 		{
