@@ -17,11 +17,12 @@ namespace Splitterino
             SetConsole(c);
             SetCategory(cat);
         }
-        private Category category;
+        private List<Category> categoryList = new List<Category>();
+        public List<Category> CategoryList { get => categoryList; set => categoryList = value; }
         private string name;
         private Console console;
-        private List<Splits> splitList = new List<Splits>();
-        public List<Splits> SplitList { get => splitList; set => splitList = value; }
+
+
 
         //NAME
         public string GetName()
@@ -78,7 +79,15 @@ namespace Splitterino
     /// </summary>
     public class Category
     {
+        public Category(Game g, string n)
+        {
+            game = g;
+            Name = n;
+        }
+        public Game game;
         public string Name { get; set; }
+        private List<Split> splitList = new List<Split>();
+        public List<Split> SplitList { get => splitList; set => splitList = value; }
     }
     /// <summary>
     /// Game Console (eg. Nintendo Switch or PS4)
@@ -91,7 +100,7 @@ namespace Splitterino
     /// <summary>
     /// Single split
     /// </summary>
-    public class Splits
+    public class Split
     {
         private string title;
 
@@ -105,11 +114,23 @@ namespace Splitterino
             title = value;
         }
 
-        public string BestTime { get; set; }
-        public string TargetTime { get; set; }
-        public string Time { get; set; }
+        public TimeSpan BestTime { get; set; }
+        public TimeSpan TargetTime { get; set; }
+        public TimeSpan WRTime { get; set; }
+        public TimeSpan Time { get; set; }
 
 
+    }
+
+    public class Run
+    {
+        public Run()
+        {
+            date = DateTime.Now;
+        }
+        private uint runID { get; set; }
+        private Game game { get; set; }
+        DateTime date { get; set; }
     }
 
 

@@ -1,14 +1,14 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
+﻿<Window x:Class="Splitterino.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:local="clr-namespace:Splitterino"
         mc:Ignorable="d"
         Title="Splitterino" Height="655.484" Width="300">
     <Grid>
-        <TextBlock x:Name="MainTimerDisplay" HorizontalAlignment="Left" Height="43" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="36" FontWeight="Bold"><Run Text="00:00:00.0"/><LineBreak/><Run/></TextBlock>
-        <TabControl HorizontalAlignment="Left" Height="173" Margin="0,453,0,0" VerticalAlignment="Top" Width="293">
+        <TextBlock x:Name="MainTimerDisplay" HorizontalAlignment="Left" Height="43" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="36" FontWeight="Bold"/>
+        <TabControl HorizontalAlignment="Left" Height="104" Margin="0,522,0,0" VerticalAlignment="Top" Width="293">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
@@ -25,6 +25,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="Startbtn" Content="Start" HorizontalAlignment="Left" Margin="10,453,0,0" VerticalAlignment="Top" Width="75" Click="Startbtn_Click_1"/>
+        <Button x:Name="Stopbtn" Content="Stop" HorizontalAlignment="Left" Margin="90,453,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
