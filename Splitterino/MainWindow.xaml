@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Splitterino"
         mc:Ignorable="d"
-        Title="Splitterino" Height="655.484" Width="300">
+        Title="Splitterino" Height="729.706" Width="300" ResizeMode="CanMinimize">
     <Grid>
         <TextBlock x:Name="MainTimerDisplay" HorizontalAlignment="Left" Height="43" Margin="10,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="36" FontWeight="Bold" Text="00:00.00"/>
-        <TabControl HorizontalAlignment="Left" Height="148" Margin="0,478,0,0" VerticalAlignment="Top" Width="293">
+        <TabControl HorizontalAlignment="Left" Height="224" Margin="0,478,0,0" VerticalAlignment="Top" Width="293">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
@@ -19,8 +19,9 @@
         <TextBlock x:Name="GameTitle" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" TextWrapping="Wrap" Text="The Legend of Splitteroni: LiveSplit to the past" VerticalAlignment="Top" Width="273" TextAlignment="Center" FontSize="16"/>
         <Separator HorizontalAlignment="Left" Height="11" Margin="10,54,0,0" VerticalAlignment="Top" Width="273"/>
         <ListBox x:Name="elapsedtimeitem" HorizontalAlignment="Left" Height="330" VerticalAlignment="Top" Width="273" Margin="10,118,0,0"/>
-        <Button x:Name="Startbtn" Content="Start" HorizontalAlignment="Left" Margin="10,453,0,0" VerticalAlignment="Top" Width="75" Click="Startbtn_Click_1"/>
-        <Button x:Name="Stopbtn" Content="Stop" HorizontalAlignment="Left" Margin="90,453,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Startbtn" Content="Start/Continue" HorizontalAlignment="Left" Margin="10,453,0,0" VerticalAlignment="Top" Width="113" Click="Startbtn_Click_1"/>
+        <Button x:Name="Stopbtn" Content="Pause" HorizontalAlignment="Left" Margin="128,453,0,0" VerticalAlignment="Top" Width="75" Click="Stopbtn_Click_1"/>
+        <Button x:Name="Resetbtn" Content="Reset" HorizontalAlignment="Left" Margin="208,453,0,0" VerticalAlignment="Top" Width="75" Click="Resetbtn_Click"/>
 
     </Grid>
 </Window>

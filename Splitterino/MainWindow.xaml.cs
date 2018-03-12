@@ -48,7 +48,7 @@ namespace Splitterino
             dt.Start();
         }
 
-        private void Stopbtn_Click(object sender, RoutedEventArgs e)
+        private void Stopbtn_Click_1(object sender, RoutedEventArgs e)
         {
             if (sw.IsRunning)
             {
