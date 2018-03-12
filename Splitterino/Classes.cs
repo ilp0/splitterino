@@ -11,10 +11,11 @@ namespace Splitterino
     /// </summary>
     public class Game
     {
-        public Game(string n, Console c)
+        public Game(string n, string c)
         {
             SetName(n);
             SetConsole(c);
+            
         }
 		public Game ()
 		{
@@ -23,7 +24,7 @@ namespace Splitterino
         private List<Category> categoryList = new List<Category>();
         public List<Category> CategoryList { get => categoryList; set => categoryList = value; }
         private string name;
-        private Console console;
+        private string console;
 
         //NAME
         public string GetName()
@@ -40,7 +41,7 @@ namespace Splitterino
         /// Gets the game console
         /// </summary>
         /// <returns></returns>
-        public Console GetConsole()
+        public string GetConsole()
         {
             return console;
         }
@@ -49,7 +50,7 @@ namespace Splitterino
         /// Sets the game console
         /// </summary>
         /// <param name="value"></param>
-        public void SetConsole(Console value)
+        public void SetConsole(string value)
         {
             console = value;
         }
@@ -71,13 +72,6 @@ namespace Splitterino
         public string Name { get; set; }
         private List<Split> splitList = new List<Split>();
         public List<Split> SplitList { get => splitList; set => splitList = value; }
-    }
-    /// <summary>
-    /// Game Console (eg. Nintendo Switch or PS4)
-    /// </summary>
-    public class Console
-    {
-        public string Name { get; set; }
     }
     
     /// <summary>
