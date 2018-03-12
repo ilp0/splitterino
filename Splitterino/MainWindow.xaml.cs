@@ -17,37 +17,49 @@ using System.Windows.Threading;
 
 namespace Splitterino
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
+        //timer
+        DispatcherTimer dt = new DispatcherTimer();
+        Stopwatch sw = new Stopwatch();
+        string currentTime = string.Empty;
         public MainWindow()
         {
             InitializeComponent();
-            Timer.dispatcherTimer.Tick += new EventHandler(Dt_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            dt.Tick += new EventHandler(dt_Tick);
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
         }
-    
-        private void Startbtn_Click(object sender, RoutedEventArgs e)
+
+        void dt_Tick(object sender, EventArgs e)
         {
-            stopWatch.Start();
-            dispatcherTimer.Start();
+            if (sw.IsRunning)
+            {
+                TimeSpan ts = sw.Elapsed;
+                currentTime = String.Format("{0:00}:{1:00}.{2:00}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                MainTimerDisplay.Text = currentTime;
+            }
+        }
+
+        private void Startbtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            sw.Start();
+            dt.Start();
         }
 
         private void Stopbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (stopWatch.IsRunning)
+            if (sw.IsRunning)
             {
-                stopWatch.Stop();
+                sw.Stop();
             }
-           // elapsedtimeitem.Items.Add(currentTime);
+            elapsedtimeitem.Items.Add(currentTime);
         }
 
         private void Resetbtn_Click(object sender, RoutedEventArgs e)
         {
-            stopWatch.Reset();
+            sw.Reset();
             MainTimerDisplay.Text = "00:00:00";
         }
     }

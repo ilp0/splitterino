@@ -11,11 +11,10 @@ namespace Splitterino
     /// </summary>
     public class Game
     {
-        public Game(string n, Console c, Category cat)
+        public Game(string n, Console c)
         {
             SetName(n);
             SetConsole(c);
-            SetCategory(cat);
         }
 		public Game ()
 		{
@@ -25,8 +24,6 @@ namespace Splitterino
         public List<Category> CategoryList { get => categoryList; set => categoryList = value; }
         private string name;
         private Console console;
-
-
 
         //NAME
         public string GetName()
@@ -55,24 +52,6 @@ namespace Splitterino
         public void SetConsole(Console value)
         {
             console = value;
-        }
-
-        /// <summary>
-        /// Gets the category
-        /// </summary>
-        /// <returns></returns>
-        public Category GetCategory()
-        {
-            return category;
-        }
-
-        /// <summary>
-        /// Set category
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetCategory(Category value)
-        {
-            category = value;
         }
 
 
