@@ -22,8 +22,6 @@ namespace Splitterino
         private string name;
         private Console console;
 
-
-
         //NAME
         public string GetName()
         {
@@ -51,24 +49,6 @@ namespace Splitterino
         public void SetConsole(Console value)
         {
             console = value;
-        }
-
-        /// <summary>
-        /// Gets the category
-        /// </summary>
-        /// <returns></returns>
-        public Category GetCategory()
-        {
-            return category;
-        }
-
-        /// <summary>
-        /// Set category
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetCategory(Category value)
-        {
-            category = value;
         }
 
 
