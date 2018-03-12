@@ -91,6 +91,16 @@ namespace Splitterino
             title = value;
         }
 
+		public Split ()
+		{
+
+		}
+
+		public Split (string name)
+		{
+			this.title = name;
+		}
+
         public TimeSpan BestTime { get; set; }
         public TimeSpan TargetTime { get; set; }
         public TimeSpan WRTime { get; set; }

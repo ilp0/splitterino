@@ -26,6 +26,22 @@ namespace Splitterino
 			return false;
 		}
 
+		public static void ReadAndPrint (string path)
+		{
+			Game g = ReadFile(path);
+			if(g != null)
+			{
+				Console.WriteLine("New Game Added!");
+				Console.WriteLine("\tName: " + g.GetName());
+				Console.WriteLine("\tCategory: " + g.CategoryList[0].Name);
+				Console.WriteLine("\tSplits: ");
+				foreach(Split s in g.CategoryList[0].SplitList)
+				{
+					Console.WriteLine("\t\t" + s.GetTitle());
+				}
+			}
+		}
+
 		/// <summary>
 		/// Reads an .splt file and tries to parse it
 		/// </summary>
@@ -59,10 +75,12 @@ namespace Splitterino
 			string cur_val = "";
 			string cur_key = "";
 
-			List<string> split_buffer = new List<string>();
+			List<Split> split_buffer = new List<Split>();
 
 			// Category object
 			Category cat = new Category(g, "");
+
+			g.CategoryList.Add(cat);
 
 			// Loop through lines
 			foreach(string row in text)
@@ -99,7 +117,7 @@ namespace Splitterino
 						case 2:
 							if (c == ',')
 							{
-								split_buffer.Add(cur_val);
+								split_buffer.Add(new Split(cur_val));
 								cur_val = "";
 								continue;
 							}
@@ -133,7 +151,8 @@ namespace Splitterino
 						// add the last split too
 						if(cur_val != "")
 						{
-							split_buffer.Add(cur_val);
+							split_buffer.Add(new Split(cur_val));
+							cat.SplitList = split_buffer;
 						}
 						break;
 				}
@@ -144,7 +163,7 @@ namespace Splitterino
 				// set default state
 				_state = 0;
 			}
-			if(g.GetName() != "" && g.GetConsole() != "" && g.GetName() != "")
+			if(g.GetName() != "" && g.GetConsole() != "" && cat.Name != "")
 			{
 				return g;
 			}
