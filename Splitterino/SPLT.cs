@@ -43,7 +43,7 @@ namespace Splitterino
 			*/
 			// Game object
 			// TODO: second parameter to "" after "console" is changed to a string
-			Game g = new Game("", null, null);
+			Game g = new Game("", "");
 
 			// Read file
 			string[] text = System.IO.File.ReadAllLines(path);
@@ -144,8 +144,7 @@ namespace Splitterino
 				// set default state
 				_state = 0;
 			}
-			// TODO: uncomment below after console is a string
-			if(g.GetName() != "" /* && g.GetConsole() != "" */ && g.GetCategory() != null)
+			if(g.GetName() != "" && g.GetConsole() != "" && g.GetName() != "")
 			{
 				return g;
 			}
