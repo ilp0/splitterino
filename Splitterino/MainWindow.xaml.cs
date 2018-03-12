@@ -19,7 +19,7 @@ namespace Splitterino
 {
     public partial class MainWindow : Window
     {
-
+		
         //timer
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
