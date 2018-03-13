@@ -70,7 +70,6 @@ namespace Splitterino
 
 			*/
 			// Game object
-			// TODO: second parameter to "" after "console" is changed to a string
 			Game g = new Game("", "");
 
 			// Read file
@@ -152,7 +151,6 @@ namespace Splitterino
 					case "CONSOLE":
 						if (cur_val != "")
 						{
-							// TODO: uncomment sitten kun console on string
 							g.SetConsole(cur_val);
 						}
 						break;

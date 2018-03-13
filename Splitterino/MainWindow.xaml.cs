@@ -28,6 +28,7 @@ namespace Splitterino
         Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
         Game g = new Game("Sly 3", "PS2");
+        //Category category = g.CategoryList[0];
         bool runInProgress = false;
         int splitCountBuffer = 0;
         public MainWindow()
@@ -61,7 +62,7 @@ namespace Splitterino
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Startbtn_Click_1(object sender, RoutedEventArgs e)
+        private void Startbtn_Click(object sender, RoutedEventArgs e)
         {
             if (!runInProgress)
             {
@@ -78,7 +79,7 @@ namespace Splitterino
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Stopbtn_Click_1(object sender, RoutedEventArgs e)
+        private void Stopbtn_Click(object sender, RoutedEventArgs e)
         {
             if (sw.IsRunning)
             {
@@ -116,6 +117,8 @@ namespace Splitterino
             sw.Reset();
             MainTimerDisplay.Text = "00:00:00";
             Startbtn.IsEnabled = true;
+            Splitbtn.IsEnabled = true;
+            Stopbtn.IsEnabled = true;
         }
 
         /// <summary>

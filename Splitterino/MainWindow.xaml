@@ -30,8 +30,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click_1" Height="20" VerticalAlignment="Top" Margin="0,0,267,0"/>
-            <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="84,0,162,0" VerticalAlignment="Top" Click="Stopbtn_Click_1"/>
+            <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="20" VerticalAlignment="Top" Margin="0,0,267,0"/>
+            <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="84,0,162,0" VerticalAlignment="Top" Click="Stopbtn_Click"/>
             <Button x:Name="Splitbtn" Content="Split" Margin="189,0,82,0" VerticalAlignment="Top" Click="Splitbtn_Click"/>
             <Button x:Name="Resetbtn" Content="Reset" Margin="269,0,0,0" VerticalAlignment="Top" Click="Resetbtn_Click"/>
 
