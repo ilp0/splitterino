@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Splitterino" Height="706.206" Width="376" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
-        <TextBlock x:Name="MainTimerDisplay" Height="60" Margin="10,92,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="36" FontWeight="Bold" Text="00:00.00"/>
+        <TextBlock x:Name="MainTimerDisplay" Height="60" Margin="10,92,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
         <TabControl Margin="10,488,10,10">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
@@ -15,13 +15,16 @@
                         <ColumnDefinition Width="47*"/>
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
+                    <Button x:Name="SelectSplitBtn" Content="Select Split File" Margin="0,10,30.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click"/>
+                    <TextBox x:Name="SplitFileName" Height="20" Margin="10,10,133.667,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left"/>
+                    <Button x:Name="LoadSplitBtn" Grid.ColumnSpan="2" Content="Load" Margin="241,10,9.667,0" VerticalAlignment="Top" Click="LoadSplitBtn_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="GameTitle" Height="44" Margin="10,10,10,0" TextWrapping="Wrap" Text="The Legend of Splitteroni: LiveSplit to the past" VerticalAlignment="Top" TextAlignment="Center" FontSize="16"/>
+        <TextBlock x:Name="GameTitle" Height="44" Margin="10,10,10,0" TextWrapping="Wrap" Text="No Game Selected" VerticalAlignment="Top" TextAlignment="Center" FontSize="18"/>
         <Separator Margin="10,54,10,636"/>
         <ListBox x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="291" VerticalAlignment="Top" Width="108" Margin="0,157,10,0"/>
         <Grid Margin="10,453,10,174">
@@ -37,8 +40,8 @@
 
         </Grid>
 
-        <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="28" Width="203"/>
-        <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,59,10,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="28" Width="170"/>
+        <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Height="28" Width="162" TextAlignment="Right" FontSize="16"/>
+        <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,59,9.667,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Height="28" Width="160" FontSize="16"/>
         <ListBox x:Name="Splititemlist" Height="291" VerticalAlignment="Top" Margin="10,157,123,0" SelectionChanged="Splititemlist_SelectionChanged"/>
 
     </Grid>

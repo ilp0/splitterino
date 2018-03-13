@@ -31,13 +31,13 @@ namespace Splitterino
         //Category category = g.CategoryList[0];
         bool runInProgress = false;
         int splitCountBuffer = 0;
+        string filename = "";
         public MainWindow()
         {
             InitializeComponent();
             dt.Tick += new EventHandler(dt_Tick);
             instance = this;
             Debug.WriteLine(Directory.GetCurrentDirectory());
-            SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
             
         }
@@ -163,6 +163,32 @@ namespace Splitterino
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
             Splititemlist.SelectedIndex = 0;
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
+        }
+
+        private void LoadSplitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SPLT.ReadAndPrint(filename);
+            //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
+
+        }
+
+        private void SelectSplitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Data\\";
+            // Set filter for file extension and default file extensi on 
+            dialog.DefaultExt = ".splt";
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dialog.ShowDialog();
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                filename = dialog.FileName;
+                SplitFileName.Text = filename;
+            
+            }
         }
     }
 }
