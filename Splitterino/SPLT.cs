@@ -178,6 +178,7 @@ namespace Splitterino
 				// set default state
 				_state = 0;
 			}
+            MainWindow.instance.UpdateGUI(g, cat);
 			//if(g.GetName() != "" && g.GetConsole() != "" && cat.Name != "")
 			//{
 				return g;

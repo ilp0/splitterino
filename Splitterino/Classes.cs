@@ -91,14 +91,9 @@ namespace Splitterino
             title = value;
         }
 
-		public Split ()
-		{
-
-		}
-
 		public Split (string name)
 		{
-			this.title = name;
+			title = name;
 		}
 
         public TimeSpan BestTime { get; set; }
@@ -113,11 +108,11 @@ namespace Splitterino
     {
         public Run()
         {
-            date = DateTime.Now;
+            TimeStamp = DateTime.Now;
         }
         private uint runID { get; set; }
         private Game game { get; set; }
-        DateTime date { get; set; }
+        public DateTime TimeStamp { get; protected set; }
     }
 
 
