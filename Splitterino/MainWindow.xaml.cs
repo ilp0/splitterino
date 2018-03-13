@@ -119,6 +119,11 @@ namespace Splitterino
             Startbtn.IsEnabled = true;
             Splitbtn.IsEnabled = true;
             Stopbtn.IsEnabled = true;
+            for (int i = 0; i <= elapsedtimeitem.Items.Count; i++)
+            {
+                elapsedtimeitem.Items.Clear();
+            }
+            ScrollSplitViewToTop();
         }
 
         /// <summary>
@@ -150,6 +155,14 @@ namespace Splitterino
             Splititemlist.SelectedIndex = splitCountBuffer + 1;
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
 
+        }
+
+        private void ScrollSplitViewToTop()
+        {
+            elapsedtimeitem.SelectedIndex = 0;
+            elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
+            Splititemlist.SelectedIndex = 0;
+            Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
         }
     }
 }
