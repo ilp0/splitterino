@@ -27,9 +27,11 @@ namespace Splitterino
         DispatcherTimer dt = new DispatcherTimer();
         Stopwatch sw = new Stopwatch();
         string currentTime = string.Empty;
+        Game g = new Game("Sly 3", "PS2");
+        bool runInProgress = false;
+        int splitCountBuffer = 0;
         public MainWindow()
         {
-            Game g = new Game("Sly 3", "PS2");
             InitializeComponent();
             dt.Tick += new EventHandler(dt_Tick);
             instance = this;
@@ -61,8 +63,15 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Startbtn_Click_1(object sender, RoutedEventArgs e)
         {
-            sw.Start();
-            dt.Start();
+            if (!runInProgress)
+            {
+                Run curRun = new Run();
+                curRun.game = g;
+                sw.Start();
+                dt.Start();
+                Startbtn.IsEnabled = false;
+            }
+            
         }
         /// <summary>
         /// Stop Timer Button
@@ -74,8 +83,10 @@ namespace Splitterino
             if (sw.IsRunning)
             {
                 sw.Stop();
+            } else
+            {
+                sw.Start();
             }
-            elapsedtimeitem.Items.Add(currentTime);
         }
         /// <summary>
         /// Split Button
@@ -84,10 +95,16 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Splitbtn_Click(object sender, RoutedEventArgs e)
         {
-            
             elapsedtimeitem.Items.Add(currentTime);
             ScrollSplitViewToBottom();
-            
+            splitCountBuffer++;
+            if (splitCountBuffer >= Splititemlist.Items.Count)
+            {
+                sw.Stop();
+                Splitbtn.IsEnabled = false;
+                Stopbtn.IsEnabled = false;
+                splitCountBuffer = 0;
+            }
         }
         /// <summary>
         /// Reset Timer Button
@@ -98,6 +115,7 @@ namespace Splitterino
         {
             sw.Reset();
             MainTimerDisplay.Text = "00:00:00";
+            Startbtn.IsEnabled = true;
         }
 
         /// <summary>
@@ -126,7 +144,7 @@ namespace Splitterino
         {
             elapsedtimeitem.SelectedIndex = elapsedtimeitem.Items.Count - 1;
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
-            Splititemlist.SelectedIndex = Splititemlist.Items.Count - 1;
+            Splititemlist.SelectedIndex = splitCountBuffer + 1;
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
 
         }

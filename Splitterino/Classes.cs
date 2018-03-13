@@ -111,7 +111,7 @@ namespace Splitterino
             TimeStamp = DateTime.Now;
         }
         private uint runID { get; set; }
-        private Game game { get; set; }
+        public Game game { get; set; }
         public DateTime TimeStamp { get; protected set; }
     }
 
