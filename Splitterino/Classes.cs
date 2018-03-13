@@ -9,6 +9,7 @@ namespace Splitterino
     /// <summary>
     /// Game
     /// </summary>
+    [Serializable]
     public class Game
     {
         public Game(string n, string c)
@@ -61,6 +62,7 @@ namespace Splitterino
     /// <summary>
     /// Run category (example Any% or 100%)
     /// </summary>
+    [Serializable]
     public class Category
     {
         public Category(Game g, string n)
@@ -72,11 +74,14 @@ namespace Splitterino
         public string Name { get; set; }
         private List<Split> splitList = new List<Split>();
         public List<Split> SplitList { get => splitList; set => splitList = value; }
+        //Total run pb
+        public TimeSpan PersonalBest { get; set; }
     }
     
     /// <summary>
     /// Single split
     /// </summary>
+    [Serializable]
     public class Split
     {
         private string title;
@@ -95,12 +100,14 @@ namespace Splitterino
 		{
 			title = name;
 		}
-
+        //Best time all time
         public TimeSpan BestTime { get; set; }
+        //Split time from PB
+        public TimeSpan PersonalBestTime { get; set; }
+        //optional target time
         public TimeSpan TargetTime { get; set; }
-        public TimeSpan WRTime { get; set; }
+        //current run time
         public TimeSpan Time { get; set; }
-
 
     }
 
