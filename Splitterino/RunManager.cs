@@ -41,12 +41,16 @@ namespace Splitterino
 
         public static void Split ()
         {
+            //add current time to right list of splits
             MainWindow.instance.elapsedtimeitem.Items.Add(MainWindow.instance.currentTime);
-            CurrentRunSplits.Add(new Splitterino.Split(MainWindow.instance.sw.Elapsed, CurrentSplitIndex++));
+            //save to var
+            CurrentRunSplits.Add(new Splitterino.Split(MainWindow.instance.sw.Elapsed, CurrentSplitIndex));
             if(SPLT.LoadedGame != null)
-            {
+            {   
+                //Jos Sum of Best splittejä on vähemmän kuin nykyinen splitti indexi
                 if(SPLT.LoadedGame.CategoryList[0].SOBSplits.Count > CurrentSplitIndex)
                 {
+                    //jos vanha SOB splittiaika on suurempi kuin nykyisen splitin aika niin tallenna splitti listaan.
                     if(SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time > MainWindow.instance.sw.Elapsed - lastTime)
                     {
                         SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time = MainWindow.instance.sw.Elapsed - lastTime;
@@ -97,7 +101,13 @@ namespace Splitterino
                 MainWindow.instance.Splitbtn.IsEnabled = false;
                 MainWindow.instance.Stopbtn.IsEnabled = false;
                 MainWindow.instance.splitCountBuffer = 0;
+                if (SPLT.LoadedGame != null)
+                {
+                    ClearUI();
+                    MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
+                }
             }
+            CurrentSplitIndex++;
             lastTime = MainWindow.instance.sw.Elapsed;
         }
 

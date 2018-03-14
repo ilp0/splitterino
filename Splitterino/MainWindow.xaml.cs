@@ -101,6 +101,7 @@ namespace Splitterino
         /// <param name="cat"></param>
         public void UpdateGUI(Game g, Category cat)
         {
+            
             GameTitle.Text = g.GetName();
             ConsoleTitle.Text = g.GetConsole();
             CategoryTitle.Text = cat.Name;
