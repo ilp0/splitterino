@@ -20,7 +20,7 @@ namespace Splitterino
         }
 		public Game ()
 		{
-			// important merge, delete this comment
+
 		}
         private List<Category> categoryList = new List<Category>();
         public List<Category> CategoryList { get => categoryList; set => categoryList = value; }
@@ -76,8 +76,18 @@ namespace Splitterino
         public List<Split> SplitList { get => splitList; set => splitList = value; }
         //Total run pb
         public TimeSpan PersonalBest { get; set; }
+        // PB splits
+        public List<Split> PBSplits = new List<Split>();
+        // Target time
+        public TimeSpan TargetTime;
+        // Target splits
+        public List<Split> TargetSplits = new List<Split>();
+        // Sum of best segments
+        public TimeSpan SOBTime;
+        // Sum of best segments splits
+        public List<Split> SOBSplits = new List<Split>();
     }
-    
+
     /// <summary>
     /// Single split
     /// </summary>
@@ -86,6 +96,7 @@ namespace Splitterino
     {
         private string title;
 
+        private int splitIndex = 0;
         public string GetTitle()
         {
             return title;
@@ -100,17 +111,39 @@ namespace Splitterino
 		{
 			title = name;
 		}
+
+        public Split (TimeSpan time, int index)
+        {
+            this.Time = time;
+            this.splitIndex = index;
+
+        }
+
+        /// <summary>
+        /// Compares two split's times. Useful if you want to compare current time to personal best time.
+        /// Returns true if a's time is less than b's time otherwise returns false
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>True if a's time is less than b's time otherwise returns false</returns>
+        public static bool Compare (Split a, Split b)
+        {
+            return a.Time < b.Time;
+        }
+        /*
         //Best time all time
         public TimeSpan BestTime { get; set; }
         //Split time from PB
         public TimeSpan PersonalBestTime { get; set; }
         //optional target time
         public TimeSpan TargetTime { get; set; }
+        */
         //current run time
         public TimeSpan Time { get; set; }
 
     }
 
+    [Serializable]
     public class Run
     {
         public Run()
@@ -120,6 +153,10 @@ namespace Splitterino
         private uint runID { get; set; }
         public Game game { get; set; }
         public DateTime TimeStamp { get; protected set; }
+        // Total Run time
+        public TimeSpan Time;
+        // Splits
+        public List<Split> Splits = new List<Split>();
     }
 
 
