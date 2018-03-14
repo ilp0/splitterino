@@ -13,6 +13,7 @@ namespace Splitterino
 
         public static List<Split> CurrentRunSplits = new List<Splitterino.Split>();
         public static int CurrentSplitIndex = 0;
+        public static TimeSpan lastTime = TimeSpan.Zero;
         public static void TimerStart ()
         {
             if (!MainWindow.instance.runInProgress)
@@ -21,6 +22,7 @@ namespace Splitterino
                 curRun.game = MainWindow.instance.g;
                 MainWindow.instance.sw.Start();
                 MainWindow.instance.dt.Start();
+                lastTime = MainWindow.instance.sw.Elapsed;
                 MainWindow.instance.Startbtn.IsEnabled = false;
             }
         }
@@ -45,11 +47,16 @@ namespace Splitterino
             {
                 if(SPLT.LoadedGame.CategoryList[0].SOBSplits.Count > CurrentSplitIndex)
                 {
-                    if(SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time > MainWindow.instance.sw.Elapsed)
+                    if(SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time > MainWindow.instance.sw.Elapsed - lastTime)
                     {
-                        SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time = MainWindow.instance.sw.Elapsed;
+                        SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time = MainWindow.instance.sw.Elapsed - lastTime;
                         Debug.WriteLine("Best segment! very nice job dude!");
                     }
+                }
+                else
+                {
+                    SPLT.LoadedGame.CategoryList[0].SOBSplits.Add(new Split(MainWindow.instance.sw.Elapsed - lastTime, CurrentSplitIndex));
+                    Debug.WriteLine("Best segment! very nice job dude!");
                 }
             }
             MainWindow.instance.ScrollSplitViewToBottom();
@@ -91,6 +98,7 @@ namespace Splitterino
                 MainWindow.instance.Stopbtn.IsEnabled = false;
                 MainWindow.instance.splitCountBuffer = 0;
             }
+            lastTime = MainWindow.instance.sw.Elapsed;
         }
 
         public static void Reset ()
@@ -100,6 +108,7 @@ namespace Splitterino
             MainWindow.instance.Startbtn.IsEnabled = true;
             MainWindow.instance.Splitbtn.IsEnabled = true;
             MainWindow.instance.Stopbtn.IsEnabled = true;
+            lastTime = MainWindow.instance.sw.Elapsed;
             CurrentSplitIndex = 0;
             CurrentRunSplits = new List<Splitterino.Split>();
             for (int i = 0; i <= MainWindow.instance.elapsedtimeitem.Items.Count; i++)
