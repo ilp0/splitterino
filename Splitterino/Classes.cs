@@ -75,15 +75,15 @@ namespace Splitterino
         private List<Split> splitList = new List<Split>();
         public List<Split> SplitList { get => splitList; set => splitList = value; }
         //Total run pb
-        public TimeSpan PersonalBest { get; set; }
+        public TimeSpan PersonalBest = TimeSpan.Zero;
         // PB splits
         public List<Split> PBSplits = new List<Split>();
         // Target time
-        public TimeSpan TargetTime;
+        public TimeSpan TargetTime = TimeSpan.Zero;
         // Target splits
         public List<Split> TargetSplits = new List<Split>();
         // Sum of best segments
-        public TimeSpan SOBTime;
+        public TimeSpan SOBTime = TimeSpan.Zero;
         // Sum of best segments splits
         public List<Split> SOBSplits = new List<Split>();
     }
@@ -112,6 +112,11 @@ namespace Splitterino
 			title = name;
 		}
 
+        /// <summary>
+        /// Constructor for saving the splits (Name not needed!)
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="index"></param>
         public Split (TimeSpan time, int index)
         {
             this.Time = time;
@@ -154,7 +159,7 @@ namespace Splitterino
         public Game game { get; set; }
         public DateTime TimeStamp { get; protected set; }
         // Total Run time
-        public TimeSpan Time;
+        public TimeSpan Time = TimeSpan.Zero;
         // Splits
         public List<Split> Splits = new List<Split>();
     }

@@ -15,6 +15,8 @@ namespace Splitterino
 	/// </summary>
 	public static class SPLT
 	{
+
+        public static Game LoadedGame = null;
 		/// <summary>
 		/// Writes a splt config file
 		/// </summary>
@@ -46,6 +48,7 @@ namespace Splitterino
                 Game g = (Game)formatter.Deserialize(stream);
                 stream.Close();
                 MainWindow.instance.UpdateGUI(g, g.CategoryList[0]);
+                LoadedGame = g;
             }
             catch
             {
