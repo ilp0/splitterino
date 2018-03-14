@@ -104,11 +104,18 @@ namespace Splitterino
             GameTitle.Text = g.GetName();
             ConsoleTitle.Text = g.GetConsole();
             CategoryTitle.Text = cat.Name;
+            if (SPLT.LoadedGame != null)
+            {
+                SOBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].SOBTime);
+                PBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].PersonalBest);
+                TargetTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetTime);
+            }
+            
             foreach (Split s in cat.SplitList)
             {
                 Splititemlist.Items.Add(s.GetTitle());
             }
-            
+            RunManager.WriteTargetTime();
         }
 
         private void Splititemlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,9 +142,11 @@ namespace Splitterino
 
         private void LoadSplitBtn_Click(object sender, RoutedEventArgs e)
         {
+            RunManager.ClearUI();
             SPLT.ReadAndPrint(filename);
+            RunManager.WriteTargetTime();
             //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
-
+            
         }
 
         private void SelectSplitBtn_Click(object sender, RoutedEventArgs e)

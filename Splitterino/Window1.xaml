@@ -19,8 +19,10 @@
                 <RowDefinition/>
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="TitleInput" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="182" Margin="0,21,0,0" MaxLines="1" MaxLength="3"/>
+            <TextBox x:Name="TitleInput" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="182" Margin="0,21,0,0" MaxLines="1" MaxLength="40"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="132" Height="16"/>
+            <TextBox x:Name="NoteInput" HorizontalAlignment="Left" Height="66" Margin="0,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Optional notes" VerticalAlignment="Top" Width="132" Height="16" Margin="0,47,0,0"/>
             <!-- Here's a valid comment. Notice it's outside the <UserControl> tag's braces 
                 <TextBox x:Name="PBHour" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="14,68,0,0" MaxLines="1" MaxLength="2"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Personal Best" VerticalAlignment="Top" Width="132" Margin="0,47,0,0"/>
@@ -42,8 +44,8 @@
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="MS" VerticalAlignment="Top" Width="19" Margin="124,117,0,0"/>
                 -->
         </Grid>
-        <Button Content="^" HorizontalAlignment="Left" Height="32" Margin="469,49,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267"/>
-        <Button Content="v&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="469,86,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267"/>
+        <Button x:Name="PriorityUpBtn" Content="^" HorizontalAlignment="Left" Height="32" Margin="469,49,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267" Click="PriorityUpBtn_Click"/>
+        <Button x:Name="PriorityDownBtn" Content="v&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="469,86,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267" Click="PriorityDownBtn_Click"/>
         <Separator HorizontalAlignment="Left" Height="17" Margin="469,33,0,0" VerticalAlignment="Top" Width="212"/>
         <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,249,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Height="21"/>
         <Button x:Name="SaveAs" Content="Save As..." HorizontalAlignment="Left" Margin="552,249,0,0" VerticalAlignment="Top" Width="66" Height="21"/>

@@ -116,6 +116,34 @@ namespace Splitterino
                 MainWindow.instance.elapsedtimeitem.Items.Clear();
             }
             MainWindow.instance.ScrollSplitViewToTop();
+            WriteTargetTime();
+        }
+
+        public static void WriteTargetTime()
+        {
+            MainWindow.instance.TargetTimeContainer.Items.Clear();
+            if(SPLT.LoadedGame != null)
+            {
+                for (int i = 0; i < SPLT.LoadedGame.CategoryList[0].PBSplits.Count; i++)
+                {
+                    string a = String.Format("{0:00}:{1:00}.{2:00}",
+                    SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Minutes, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Seconds, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Milliseconds / 10);
+                    MainWindow.instance.TargetTimeContainer.Items.Add(a);
+                }
+
+            } else
+            {
+                Debug.WriteLine("Loaded game is null");
+            }
+            
+        }
+
+        public static void ClearUI()
+        {
+            MainWindow.instance.TargetTimeContainer.Items.Clear();
+            MainWindow.instance.elapsedtimeitem.Items.Clear();
+            MainWindow.instance.Splititemlist.Items.Clear();
+
         }
     }
 }

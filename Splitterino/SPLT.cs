@@ -215,5 +215,10 @@ namespace Splitterino
 			//return null;
             
 		}
+        public static string TimeSpanToString(TimeSpan ts)
+        {
+            return String.Format("{0:00}:{1:00}.{2:00}",
+            ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+        }
 	}
 }

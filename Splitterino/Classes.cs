@@ -96,7 +96,7 @@ namespace Splitterino
     {
         private string title;
 
-        private int splitIndex = 0;
+        public int splitIndex = 0;
         public string GetTitle()
         {
             return title;
