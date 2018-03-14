@@ -49,6 +49,7 @@ namespace Splitterino
         {
             SplitContainer.Items.Add(TitleInput.Text);
             TitleInput.Text = "";
+            TitleInput.Focus();
         }
 
         /// <summary>
@@ -85,6 +86,16 @@ namespace Splitterino
                 // delete the old occurrence of this item
                 SplitContainer.Items.RemoveAt(IndexToRemove);
             }
+        }
+
+        private void RemoveSelectedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SplitContainer.Items.RemoveAt(SplitContainer.SelectedIndex);
+        }
+
+        private void UpdateSelectedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SplitContainer.Items.Insert(SplitContainer.SelectedIndex, TitleInput.Text);
         }
     }
 }

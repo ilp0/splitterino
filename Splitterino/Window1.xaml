@@ -51,8 +51,8 @@
         <Button x:Name="SaveAs" Content="Save As..." HorizontalAlignment="Left" Margin="552,249,0,0" VerticalAlignment="Top" Width="66" Height="21"/>
         <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="623,249,0,0" VerticalAlignment="Top" Width="58" Height="21" Click="Save_Click"/>
         <Button x:Name="AddSplitToList" Content="Add Split" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Width="141" Click="AddSplitToList_Click"/>
-        <Button Content="Update Selected" HorizontalAlignment="Left" Margin="472,225,0,0" VerticalAlignment="Top" Width="103"/>
-        <Button Content="Remove Selected" HorizontalAlignment="Left" Margin="580,225,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button x:Name="UpdateSelectedBtn" Content="Update Selected" HorizontalAlignment="Left" Margin="472,225,0,0" VerticalAlignment="Top" Width="103" Click="UpdateSelectedBtn_Click"/>
+        <Button x:Name="RemoveSelectedBtn" Content="Remove Selected" HorizontalAlignment="Left" Margin="580,225,0,0" VerticalAlignment="Top" Width="101" Click="RemoveSelectedBtn_Click"/>
         <Separator HorizontalAlignment="Left" Height="10" Margin="469,215,0,0" VerticalAlignment="Top" Width="212"/>
 
     </Grid>
