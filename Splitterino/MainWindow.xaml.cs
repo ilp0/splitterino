@@ -104,6 +104,13 @@ namespace Splitterino
             GameTitle.Text = g.GetName();
             ConsoleTitle.Text = g.GetConsole();
             CategoryTitle.Text = cat.Name;
+            if (SPLT.LoadedGame != null)
+            {
+                SOBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].SOBTime);
+                PBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].PersonalBest);
+                TargetTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetTime);
+            }
+            
             foreach (Split s in cat.SplitList)
             {
                 Splititemlist.Items.Add(s.GetTitle());

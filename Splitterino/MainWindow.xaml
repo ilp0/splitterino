@@ -8,7 +8,7 @@
         Title="Splitterino" Height="776.206" Width="376" ResizeMode="CanMinimize">
     <Grid Margin="0,0,4,0">
         <TextBlock x:Name="MainTimerDisplay" Height="54" Margin="10,87,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
-        <TabControl Margin="10,558,10,10">
+        <TabControl Margin="10,533,10,10">
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
@@ -27,22 +27,10 @@
         </TabControl>
         <TextBlock x:Name="GameTitle" Height="44" Margin="10,10,10,0" TextWrapping="Wrap" Text="No Game Selected" VerticalAlignment="Top" TextAlignment="Center" FontSize="18"/>
         <Separator Margin="10,54,10,636"/>
-        <Grid Margin="10,536,10,189">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="20" VerticalAlignment="Top" Margin="0,0,267,0"/>
-            <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="84,0,162,0" VerticalAlignment="Top" Click="Stopbtn_Click"/>
-            <Button x:Name="Splitbtn" Content="Split" Margin="189,0,82,0" VerticalAlignment="Top" Click="Splitbtn_Click"/>
-            <Button x:Name="Resetbtn" Content="Reset" Margin="269,0,0,0" VerticalAlignment="Top" Click="Resetbtn_Click"/>
-
-        </Grid>
 
         <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Height="28" Width="162" TextAlignment="Right" FontSize="16"/>
         <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,59,9.667,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Height="28" Width="160" FontSize="16"/>
-        <Grid Margin="10,146,10,249">
+        <Grid Margin="10,146,10,214">
             <ListBox x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="88" Margin="0,27,0,0"/>
             <ListBox x:Name="Splititemlist" Height="265" VerticalAlignment="Top" Margin="0,27,184,0" SelectionChanged="Splititemlist_SelectionChanged"/>
             <ListBox x:Name="TargetTimeContainer" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="88" Margin="0,27,93,0"/>
@@ -54,6 +42,18 @@
             <TextBlock x:Name="SOBTimeText" HorizontalAlignment="Left" Margin="0,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
             <TextBlock x:Name="TargetTimeText" HorizontalAlignment="Left" Margin="133,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
             <TextBlock x:Name="PBTimeText" HorizontalAlignment="Left" Margin="258,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+            <Grid Margin="0,346,0,-27">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="20" VerticalAlignment="Top" Margin="0,0,267,0"/>
+                <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="84,0,162,0" VerticalAlignment="Top" Click="Stopbtn_Click"/>
+                <Button x:Name="Splitbtn" Content="Split" Margin="189,0,82,0" VerticalAlignment="Top" Click="Splitbtn_Click"/>
+                <Button x:Name="Resetbtn" Content="Reset" Margin="269,0,0,0" VerticalAlignment="Top" Click="Resetbtn_Click"/>
+
+            </Grid>
         </Grid>
 
     </Grid>
