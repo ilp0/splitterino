@@ -41,18 +41,48 @@ namespace Splitterino
         {
             MainWindow.instance.elapsedtimeitem.Items.Add(MainWindow.instance.currentTime);
             CurrentRunSplits.Add(new Splitterino.Split(MainWindow.instance.sw.Elapsed, CurrentSplitIndex++));
-
+            if(SPLT.LoadedGame != null)
+            {
+                if(SPLT.LoadedGame.CategoryList[0].SOBSplits.Count > CurrentSplitIndex)
+                {
+                    if(SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time > MainWindow.instance.sw.Elapsed)
+                    {
+                        SPLT.LoadedGame.CategoryList[0].SOBSplits[CurrentSplitIndex].Time = MainWindow.instance.sw.Elapsed;
+                        Debug.WriteLine("Best segment! very nice job dude!");
+                    }
+                }
+            }
             MainWindow.instance.ScrollSplitViewToBottom();
             MainWindow.instance.splitCountBuffer++;
             if (MainWindow.instance.splitCountBuffer >= MainWindow.instance.Splititemlist.Items.Count)
             {
                 if(SPLT.LoadedGame != null)
                 {
+                    bool save = false;
+                    TimeSpan totes = TimeSpan.Zero;
+                    foreach(Split t in SPLT.LoadedGame.CategoryList[0].SOBSplits)
+                    {
+                        totes += t.Time;
+                    }
+                    if (totes != TimeSpan.Zero)
+                    {
+                        if (totes != SPLT.LoadedGame.CategoryList[0].SOBTime)
+                        {
+                            SPLT.LoadedGame.CategoryList[0].SOBTime = totes;
+                            save = true;
+                        }
+                    }
                     if (SPLT.LoadedGame.CategoryList[0].PersonalBest > MainWindow.instance.sw.Elapsed || SPLT.LoadedGame.CategoryList[0].PersonalBest == TimeSpan.Zero)
                     {
                         Debug.WriteLine("PB !!!!!!!!!\n\n");
                         SPLT.LoadedGame.CategoryList[0].PersonalBest = MainWindow.instance.sw.Elapsed;
                         SPLT.LoadedGame.CategoryList[0].PBSplits = CurrentRunSplits;
+                        
+                        save = true;
+                    }
+
+                    if(save)
+                    {
                         SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games\\", SPLT.LoadedGame);
                     }
                 }
