@@ -24,13 +24,13 @@ namespace Splitterino
         //Instance for outside use.
         public static MainWindow instance;
         //timer stuff
-        DispatcherTimer dt = new DispatcherTimer();
-        Stopwatch sw = new Stopwatch();
-        string currentTime = string.Empty;
-        Game g = new Game("Sly 3", "PS2");
+        public DispatcherTimer dt = new DispatcherTimer();
+        public Stopwatch sw = new Stopwatch();
+        public string currentTime = string.Empty;
+        public Game g = new Game("Sly 3", "PS2");
         //Category category = g.CategoryList[0];
-        bool runInProgress = false;
-        int splitCountBuffer = 0;
+        public bool runInProgress = false;
+        public int splitCountBuffer = 0;
         string filename = "";
         public MainWindow()
         {
@@ -64,15 +64,7 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Startbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!runInProgress)
-            {
-                Run curRun = new Run();
-                curRun.game = g;
-                sw.Start();
-                dt.Start();
-                Startbtn.IsEnabled = false;
-            }
-            
+            RunManager.TimerStart();
         }
         /// <summary>
         /// Stop Timer Button
@@ -81,13 +73,7 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Stopbtn_Click(object sender, RoutedEventArgs e)
         {
-            if (sw.IsRunning)
-            {
-                sw.Stop();
-            } else
-            {
-                sw.Start();
-            }
+            RunManager.StopButtonClick();
         }
         /// <summary>
         /// Split Button
@@ -96,16 +82,7 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Splitbtn_Click(object sender, RoutedEventArgs e)
         {
-            elapsedtimeitem.Items.Add(currentTime);
-            ScrollSplitViewToBottom();
-            splitCountBuffer++;
-            if (splitCountBuffer >= Splititemlist.Items.Count)
-            {
-                sw.Stop();
-                Splitbtn.IsEnabled = false;
-                Stopbtn.IsEnabled = false;
-                splitCountBuffer = 0;
-            }
+            RunManager.Split();
         }
         /// <summary>
         /// Reset Timer Button
@@ -114,16 +91,7 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Resetbtn_Click(object sender, RoutedEventArgs e)
         {
-            sw.Reset();
-            MainTimerDisplay.Text = "00:00:00";
-            Startbtn.IsEnabled = true;
-            Splitbtn.IsEnabled = true;
-            Stopbtn.IsEnabled = true;
-            for (int i = 0; i <= elapsedtimeitem.Items.Count; i++)
-            {
-                elapsedtimeitem.Items.Clear();
-            }
-            ScrollSplitViewToTop();
+            RunManager.Reset();
         }
 
         /// <summary>
@@ -148,7 +116,7 @@ namespace Splitterino
 
         }
 
-        private void ScrollSplitViewToBottom()
+        public void ScrollSplitViewToBottom()
         {
             elapsedtimeitem.SelectedIndex = elapsedtimeitem.Items.Count - 1;
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
@@ -157,7 +125,7 @@ namespace Splitterino
 
         }
 
-        private void ScrollSplitViewToTop()
+        public void ScrollSplitViewToTop()
         {
             elapsedtimeitem.SelectedIndex = 0;
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
