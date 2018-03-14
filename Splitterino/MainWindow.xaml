@@ -18,6 +18,7 @@
                     <Button x:Name="SelectSplitBtn" Content="Select Split File" Margin="0,10,30.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click"/>
                     <TextBox x:Name="SplitFileName" Height="20" Margin="10,10,133.667,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left"/>
                     <Button x:Name="LoadSplitBtn" Grid.ColumnSpan="2" Content="Load" Margin="241,10,9.667,0" VerticalAlignment="Top" Click="LoadSplitBtn_Click"/>
+                    <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="241,35,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">

@@ -190,6 +190,12 @@ namespace Splitterino
             
             }
         }
+
+        private void NewSplitsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 SplitWindow = new Window1();
+            SplitWindow.Show();
+        }
     }
 }
 

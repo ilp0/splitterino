@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,17 +21,38 @@ namespace Splitterino
 		/// <param name="path"></param>
 		/// <param name="game"></param>
 		/// <returns>Boolean (successful, failed) </returns>
-		public static bool WriteFile (string path, Game game)
+		public static void WriteFile (string path, Game game)
 		{
-			/*
-				TODO
-			*/
-			return false;
+            try
+            {
+                Stream stream = File.Open(path + "\\" + game.GetName() + ".splg", FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, game);
+                stream.Close();
+            } catch
+            {
+                Debug.WriteLine("Save failed");
+            }
+            game = null;
+
 		}
 
 		public static void ReadAndPrint (string path)
 		{
-			Game g = ReadFile(path);
+            try
+            {
+                Stream stream = File.Open(path, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                Game g = (Game)formatter.Deserialize(stream);
+                stream.Close();
+                MainWindow.instance.UpdateGUI(g, g.CategoryList[0]);
+            }
+            catch
+            {
+                Debug.WriteLine("Fileread failed");
+            }
+            //Game g = ReadFile(path);
+            /*
 			if(g != null)
 			{
                 /*
@@ -41,7 +64,7 @@ namespace Splitterino
 				{
                     MainWindow.instance.GameTitle.Text += ("\t\t" + s.GetTitle());
 				}
-                */
+                
 
                 Debug.WriteLine("New Game Added!");
                 Debug.WriteLine("\tName: " + g.GetName() + "\n");
@@ -51,16 +74,20 @@ namespace Splitterino
                 {
                     Debug.WriteLine("\t\t" + s.GetTitle());
                 }
+                
             }
-		}
+        */
 
-		/// <summary>
-		/// Reads an .splt file and tries to parse it
-		/// </summary>
-		/// <param name="path"></param>
-		/// <returns>New "Game" object if successful or NULL if failed</returns>
-		public static Game ReadFile (string path)
+        }
+
+        /// <summary>
+        /// Reads an .splt file and tries to parse it
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>New "Game" object if successful or NULL if failed</returns>
+        public static Game ReadFile (string path)
 		{
+            
 			/*
 				# example file
 				game=Sly 3
@@ -183,6 +210,7 @@ namespace Splitterino
 			//}
 
 			//return null;
+            
 		}
 	}
 }

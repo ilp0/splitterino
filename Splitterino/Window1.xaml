@@ -10,9 +10,9 @@
         <ListBox x:Name="SplitContainer" HorizontalAlignment="Left" Height="230" Margin="10,39,0,0" VerticalAlignment="Top" Width="454"/>
         <TextBox x:Name="GameName" HorizontalAlignment="Left" Height="22" Margin="51,10,0,0" VerticalAlignment="Top" Width="193" MaxLines="1" MaxLength="50"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,11,0,0" TextWrapping="Wrap" Text="Game" VerticalAlignment="Top" Width="41"/>
-        <TextBox x:Name="GameName_Copy" HorizontalAlignment="Left" Height="22" Margin="304,11,0,0" VerticalAlignment="Top" Width="160" MaxLines="1" MaxLength="50"/>
+        <TextBox x:Name="CategoryName" HorizontalAlignment="Left" Height="22" Margin="304,11,0,0" VerticalAlignment="Top" Width="160" MaxLines="1" MaxLength="50"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="249,12,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Width="50"/>
-        <TextBox x:Name="GameName_Copy1" HorizontalAlignment="Left" Height="22" Margin="519,11,0,0" VerticalAlignment="Top" Width="162" MaxLines="1" MaxLength="50"/>
+        <TextBox x:Name="ConsoleName" HorizontalAlignment="Left" Height="22" Margin="519,11,0,0" VerticalAlignment="Top" Width="162" MaxLines="1" MaxLength="50"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="469,12,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Width="50"/>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="183" Margin="498,49,0,0" Height="169">
             <Grid.RowDefinitions>
@@ -47,11 +47,11 @@
         <Separator HorizontalAlignment="Left" Height="17" Margin="469,33,0,0" VerticalAlignment="Top" Width="212"/>
         <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,249,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Height="21"/>
         <Button x:Name="SaveAs" Content="Save As..." HorizontalAlignment="Left" Margin="552,249,0,0" VerticalAlignment="Top" Width="66" Height="21"/>
-        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="623,249,0,0" VerticalAlignment="Top" Width="58" Height="21"/>
-        <Button Content="Add Split" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Width="141"/>
+        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="623,249,0,0" VerticalAlignment="Top" Width="58" Height="21" Click="Save_Click"/>
+        <Button x:Name="AddSplitToList" Content="Add Split" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Width="141" Click="AddSplitToList_Click"/>
         <Button Content="Update Selected" HorizontalAlignment="Left" Margin="472,225,0,0" VerticalAlignment="Top" Width="103"/>
         <Button Content="Remove Selected" HorizontalAlignment="Left" Margin="580,225,0,0" VerticalAlignment="Top" Width="101"/>
-        <Separator HorizontalAlignment="Left" Height="100" Margin="469,170,0,0" VerticalAlignment="Top" Width="212"/>
+        <Separator HorizontalAlignment="Left" Height="10" Margin="469,215,0,0" VerticalAlignment="Top" Width="212"/>
 
     </Grid>
 </Window>
