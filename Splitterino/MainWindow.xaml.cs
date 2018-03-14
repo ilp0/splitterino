@@ -108,7 +108,7 @@ namespace Splitterino
             {
                 Splititemlist.Items.Add(s.GetTitle());
             }
-            
+            RunManager.WriteTargetTime();
         }
 
         private void Splititemlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,9 +135,11 @@ namespace Splitterino
 
         private void LoadSplitBtn_Click(object sender, RoutedEventArgs e)
         {
+            RunManager.ClearUI();
             SPLT.ReadAndPrint(filename);
+            RunManager.WriteTargetTime();
             //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
-
+            
         }
 
         private void SelectSplitBtn_Click(object sender, RoutedEventArgs e)
