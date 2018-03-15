@@ -250,7 +250,7 @@ namespace Splitterino
                                     RunManager.Reset();
                                     break;
                             }
-                            
+                            RunManager.Split();
                             handled = true;
                             break;
                     }
