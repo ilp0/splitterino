@@ -120,24 +120,31 @@ namespace Splitterino
             MainWindow.instance.Stopbtn.IsEnabled = true;
             lastTime = MainWindow.instance.sw.Elapsed;
             CurrentSplitIndex = 0;
-            CurrentRunSplits = new List<Splitterino.Split>();
-            for (int i = 0; i <= MainWindow.instance.elapsedtimeitem.Items.Count; i++)
-            {
-                MainWindow.instance.elapsedtimeitem.Items.Clear();
-            }
+            CurrentRunSplits = new List<Split>();
+            ClearUI();
             MainWindow.instance.ScrollSplitViewToTop();
-            WriteTargetTime();
+            MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
         }
-
-        public static void WriteTargetTime()
+        /// <summary>
+        /// Writes target time to UI. Gets the targetsplits from passed on property
+        /// </summary>
+        /// <param name="sl"></param>
+        public static void WriteTargetTime(List<Split> sl)
         {
+            /*if(SPLT.LoadedGame.CategoryList[0].TargetSplits == null)
+            {
+                SPLT.LoadedGame.CategoryList[0].TargetSplits = SPLT.LoadedGame.CategoryList[0].PBSplits;
+            }
+            */
             MainWindow.instance.TargetTimeContainer.Items.Clear();
             if(SPLT.LoadedGame != null)
             {
-                for (int i = 0; i < SPLT.LoadedGame.CategoryList[0].PBSplits.Count; i++)
+                for (int i = 0; i < sl.Count; i++)
                 {
-                    string a = String.Format("{0:00}:{1:00}.{2:00}",
-                    SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Minutes, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Seconds, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Milliseconds / 10);
+                    string a = SPLT.TimeSpanToString(sl[i].Time);
+                    //string a = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetSplits[i].Time);
+                    //string a = String.Format("{0:00}:{1:00}.{2:00}",
+                    //SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Minutes, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Seconds, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Milliseconds / 10);
                     MainWindow.instance.TargetTimeContainer.Items.Add(a);
                 }
 

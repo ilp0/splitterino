@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Splitterino
 {
@@ -39,6 +40,8 @@ namespace Splitterino
             InitializeComponent();
             dt.Tick += new EventHandler(dt_Tick);
             instance = this;
+            Preferences.Deserialize();
+            Preferences.LoadPreferences();
             Debug.WriteLine(Directory.GetCurrentDirectory());
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
             
@@ -118,7 +121,18 @@ namespace Splitterino
             {
                 Splititemlist.Items.Add(s.GetTitle());
             }
-            RunManager.WriteTargetTime();
+            switch (Preferences.DefaultComparisonSplits)
+            {
+                case 1:
+                    RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
+                    break;
+                case 2:
+                    RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].TargetSplits);
+                    break;
+                case 3:
+                    RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
+                    break;
+            }
         }
 
         private void Splititemlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -143,14 +157,6 @@ namespace Splitterino
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
         }
 
-        private void LoadSplitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            RunManager.ClearUI();
-            SPLT.ReadAndPrint(filename);
-            //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
-            
-        }
-
         private void SelectSplitBtn_Click(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog 
@@ -168,7 +174,11 @@ namespace Splitterino
                 filename = dialog.FileName;
                 SplitFileName.Text = filename;
                 Debug.WriteLine(filename);
+                RunManager.ClearUI();
+                SPLT.ReadAndPrint(filename);
+                //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
             }
+            Preferences.LoadPreferences();
         }
 
         private void NewSplitsBtn_Click(object sender, RoutedEventArgs e)
@@ -205,6 +215,7 @@ namespace Splitterino
 
         protected override void OnClosed(EventArgs e)
         {
+            Preferences.Serialize();
             _source.RemoveHook(HwndHook);
             _source = null;
             UnregisterHotKey();
@@ -267,11 +278,81 @@ namespace Splitterino
         private void WindowAlwaysOnTopCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             Preferences.WindowAlwaysOnTop = true;
+            instance.Topmost = true;
         }
 
         private void WindowAlwaysOnTopCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Preferences.WindowAlwaysOnTop = false;
+            instance.Topmost = false;
+        }
+
+        private void SetCurrentGameDefaultBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(SPLT.LoadedGame != null)
+            {
+                Preferences.DefaultGamePath = Directory.GetCurrentDirectory() + "//Data//Games//" + SPLT.LoadedGame.GetName() + ".splg";
+            }
+        }
+
+        private void SelectDefaultGameBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Data\\";
+            // Set filter for file extension and default file extensi on 
+            dialog.DefaultExt = ".splg";
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dialog.ShowDialog();
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+
+                string f = dialog.FileName;
+                Preferences.DefaultGamePath = f;
+                Debug.WriteLine(f + " set as default game");
+            }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBoxBestSplit_Selected(object sender, RoutedEventArgs e)
+        {
+            Preferences.DefaultComparisonSplits = 3;
+            if (SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
+        }
+
+        private void ComboBoxCustomTarget_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CombBoxPB_Selected(object sender, RoutedEventArgs e)
+        {
+            Preferences.DefaultComparisonSplits = 1;
+            if(SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
+
+        }
+
+        private void SavePreferencesOnQuitChkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Preferences.SavePrefsOnQuit = false;
+        }
+
+
+
+        private void SavePrefsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Preferences.Serialize();
+        }
+
+        private void SavePreferencesOnQuitChkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Preferences.SavePrefsOnQuit = true;
         }
     }
 }
