@@ -178,7 +178,7 @@ namespace Splitterino
                 SPLT.ReadAndPrint(filename);
                 //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
             }
-            Preferences.LoadPreferences();
+            
         }
 
         private void NewSplitsBtn_Click(object sender, RoutedEventArgs e)

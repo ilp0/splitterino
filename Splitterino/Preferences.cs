@@ -35,7 +35,9 @@ namespace Splitterino
         {
             DefaultTargetTime = ts;
         }
-
+        /// <summary>
+        /// Serialize into SplitteroniPrefs.dat
+        /// </summary>
         public static void Serialize()
         {
             try
@@ -57,6 +59,9 @@ namespace Splitterino
             }
 
         }
+        /// <summary>
+        /// Deserialize SplitteroniPrefs.dat
+        /// </summary>
         public static void Deserialize()
         {
             try
@@ -64,8 +69,7 @@ namespace Splitterino
                 
                 Stream stream = File.Open(Directory.GetCurrentDirectory() + "\\SplitteroniPrefs.dat", FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
-                PreferencesSerializable p = new PreferencesSerializable();
-
+                PreferencesSerializable p = (PreferencesSerializable)formatter.Deserialize(stream);
                 WindowAlwaysOnTop = p.WindowAlwaysOnTop;
                 SavePrefsOnQuit = p.SavePrefsOnQuit;
                 DefaultGamePath = p.DefaultGamePath;
@@ -95,7 +99,7 @@ namespace Splitterino
             {
                 if (DefaultGamePath != null)
                 {
-                    SPLT.ReadAndPrint(Directory.GetCurrentDirectory() + "//Data//Games//" + DefaultGamePath);
+                    SPLT.ReadAndPrint(DefaultGamePath);
                 }
             } catch
             {
@@ -127,6 +131,8 @@ namespace Splitterino
                 Debug.WriteLine("Failed to set defaultTargetTime");
             }
 
+            if (SavePrefsOnQuit) MainWindow.instance.SavePreferencesOnQuitChkBox.IsChecked = true;
+            else MainWindow.instance.SavePreferencesOnQuitChkBox.IsChecked = false;
             
             
         }
