@@ -47,8 +47,8 @@
         <Button x:Name="PriorityUpBtn" Content="^" HorizontalAlignment="Left" Height="32" Margin="469,49,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267" Click="PriorityUpBtn_Click"/>
         <Button x:Name="PriorityDownBtn" Content="v&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="469,86,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267" Click="PriorityDownBtn_Click"/>
         <Separator HorizontalAlignment="Left" Height="17" Margin="469,33,0,0" VerticalAlignment="Top" Width="212"/>
-        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,249,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Height="21"/>
-        <Button x:Name="SaveAs" Content="Save As..." HorizontalAlignment="Left" Margin="552,249,0,0" VerticalAlignment="Top" Width="66" Height="21"/>
+        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="472,249,0,0" VerticalAlignment="Top" Width="59" IsCancel="True" Height="21"/>
+        <Button x:Name="SaveAndLoadBtn" Content="Save &amp; Load" HorizontalAlignment="Left" Margin="536,249,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="SaveAndLoadBtn_Click"/>
         <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="623,249,0,0" VerticalAlignment="Top" Width="58" Height="21" Click="Save_Click"/>
         <Button x:Name="AddSplitToList" Content="Add Split" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Width="141" Click="AddSplitToList_Click"/>
         <Button x:Name="UpdateSelectedBtn" Content="Update Selected" HorizontalAlignment="Left" Margin="472,225,0,0" VerticalAlignment="Top" Width="103" Click="UpdateSelectedBtn_Click"/>

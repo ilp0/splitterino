@@ -144,6 +144,7 @@ namespace Splitterino
             } else
             {
                 Debug.WriteLine("Loaded game is null");
+                
             }
             
         }

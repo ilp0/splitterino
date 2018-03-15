@@ -11,15 +11,20 @@
         <TabControl Margin="10,533,10,10">
             <TabItem Header="Settings">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="84*"/>
                         <ColumnDefinition Width="181*"/>
                         <ColumnDefinition Width="73*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="SelectSplitBtn" Content="Select Split File" Margin="0,10,31,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click" Grid.Column="1"/>
-                    <TextBox x:Name="SplitFileName" Height="20" Margin="10,10,133,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left" Grid.ColumnSpan="2"/>
-                    <Button x:Name="LoadSplitBtn" Grid.ColumnSpan="2" Content="Load" Margin="157,10,10,0" VerticalAlignment="Top" Click="LoadSplitBtn_Click" Grid.Column="1"/>
-                    <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="157,35,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click" Grid.Column="1"/>
+                    <Button x:Name="SelectSplitBtn" Content="Select Split File" Margin="0,10,29.333,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click" Grid.Column="1"/>
+                    <TextBox x:Name="SplitFileName" Height="20" Margin="10,10,132.333,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Button x:Name="LoadSplitBtn" Grid.ColumnSpan="2" Content="Load" Margin="157,10,9.667,0" VerticalAlignment="Top" Click="LoadSplitBtn_Click" Grid.Column="1"/>
+                    <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="157,73,9.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click" Grid.Column="1"/>
+                    <CheckBox x:Name="WindowAlwaysOnTopCheckBox" Content="Always on top" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="104" Checked="WindowAlwaysOnTopCheckBox_Checked" Unchecked="WindowAlwaysOnTopCheckBox_Unchecked" Grid.Row="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Hotkeys">

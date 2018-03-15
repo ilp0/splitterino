@@ -147,7 +147,6 @@ namespace Splitterino
         {
             RunManager.ClearUI();
             SPLT.ReadAndPrint(filename);
-            RunManager.WriteTargetTime();
             //SPLT.ReadAndPrint(System.IO.Directory.GetCurrentDirectory() + "\\Data\\" + g.GetName() + ".splt");
             
         }
@@ -165,9 +164,10 @@ namespace Splitterino
             if (result == true)
             {
                 // Open document 
+                
                 filename = dialog.FileName;
                 SplitFileName.Text = filename;
-            
+                Debug.WriteLine(filename);
             }
         }
 
@@ -262,6 +262,16 @@ namespace Splitterino
         private void OnHotKeyPressed()
         {
             RunManager.Split();
+        }
+
+        private void WindowAlwaysOnTopCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Preferences.WindowAlwaysOnTop = true;
+        }
+
+        private void WindowAlwaysOnTopCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Preferences.WindowAlwaysOnTop = false;
         }
     }
 }

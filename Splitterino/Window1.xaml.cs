@@ -41,8 +41,13 @@ namespace Splitterino
                 c.SplitList.Add(s);
             }
             g.CategoryList.Add(c);
-            SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games\\", g);
-            
+            SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games", g);
+
+        }
+
+        private void SaveGame()
+        {
+           
         }
 
         private void AddSplitToList_Click(object sender, RoutedEventArgs e)
@@ -96,6 +101,13 @@ namespace Splitterino
         private void UpdateSelectedBtn_Click(object sender, RoutedEventArgs e)
         {
             SplitContainer.Items.Insert(SplitContainer.SelectedIndex, TitleInput.Text);
+        }
+
+        private void SaveAndLoadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveGame();
+
+            Close();
         }
     }
 }
