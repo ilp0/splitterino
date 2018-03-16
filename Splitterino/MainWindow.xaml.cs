@@ -116,7 +116,7 @@ namespace Splitterino
                 PBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].PersonalBest);
                 TargetTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetTime);
             }
-            
+            Splititemlist.Items.Clear();
             foreach (Split s in cat.SplitList)
             {
                 Splititemlist.Items.Add(s.GetTitle());
@@ -353,6 +353,27 @@ namespace Splitterino
         private void SavePreferencesOnQuitChkBox_Checked(object sender, RoutedEventArgs e)
         {
             Preferences.SavePrefsOnQuit = true;
+        }
+
+        private void CurrentComparisonTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SPLT.LoadedGame != null)
+            {
+                switch (CurrentComparisonTime.SelectedIndex)
+                {
+                    case 0:
+                        RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
+                        break;
+                    case 1:
+                        RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].TargetSplits);
+                        break;
+                    case 2:
+                        RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
+                        break;
+
+
+                }
+            }
         }
     }
 }

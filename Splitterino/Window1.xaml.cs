@@ -21,6 +21,9 @@ namespace Splitterino
     /// </summary>
     public partial class Window1 : Window
     {
+
+        List<Split> SplitList = new List<Split>();
+        List<Split> TargetSplitList = new List<Split>();
         public Window1()
         {
             InitializeComponent();
@@ -34,27 +37,30 @@ namespace Splitterino
         {
             Game g = new Game(GameName.Text, ConsoleName.Text);
             Category c = new Category(g, CategoryName.Text);
-            for (int i = 0; i < SplitContainer.Items.Count; i++)
-            {
-                Split s = new Split(SplitContainer.Items.GetItemAt(i).ToString());
-                s.splitIndex = i;
-                c.SplitList.Add(s);
-            }
+
+            c.SplitList = SplitList;
+            c.TargetSplits = TargetSplitList;
             g.CategoryList.Add(c);
             SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games", g);
-
+            Close();
         }
 
         private void SaveGame()
         {
-           
+
         }
 
         private void AddSplitToList_Click(object sender, RoutedEventArgs e)
         {
-            SplitContainer.Items.Add(TitleInput.Text);
+            Split s = new Split(TitleInput.Text);
+            SplitContainer.Items.Add(s.GetTitle());
             TitleInput.Text = "";
             TitleInput.Focus();
+            s.splitIndex = SplitContainer.Items.Count;
+            //juu eihän tässä
+            if (TargetHour != null) TargetSplitList.Add(new Split(s.GetTitle()) { splitIndex = s.splitIndex, Time = new TimeSpan(int.Parse(TargetHour.Text), int.Parse(TargetMin.Text), int.Parse(TargetSec.Text)) });
+            SplitList.Add(s);
+
         }
 
         /// <summary>
@@ -64,8 +70,12 @@ namespace Splitterino
         /// <param name="e"></param>
         private void PriorityUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (SplitContainer.SelectedIndex > 0)
+            if (SplitContainer.SelectedIndex > 0 && SplitContainer.SelectedIndex != SplitContainer.Items.Count)
             {
+                TargetSplitList[SplitContainer.SelectedIndex].splitIndex -= 1;
+                TargetSplitList[SplitContainer.SelectedIndex - 1].splitIndex += 1;
+                SplitList[SplitContainer.SelectedIndex].splitIndex -= 1;
+                SplitList[SplitContainer.SelectedIndex - 1].splitIndex += 1;
                 // add a duplicate item up in the listbox
                 SplitContainer.Items.Insert(SplitContainer.SelectedIndex - 1, SplitContainer.SelectedItem);
                 // make it the current item
@@ -83,6 +93,10 @@ namespace Splitterino
         {
             if ((SplitContainer.SelectedIndex != -1) && (SplitContainer.SelectedIndex < SplitContainer.Items.Count - 1))
             {
+                TargetSplitList[SplitContainer.SelectedIndex].splitIndex += 1;
+                TargetSplitList[SplitContainer.SelectedIndex + 1].splitIndex -= 1;
+                SplitList[SplitContainer.SelectedIndex].splitIndex += 1;
+                SplitList[SplitContainer.SelectedIndex + 1].splitIndex -= 1;
                 // add a duplicate item down in the listbox
                 int IndexToRemove = SplitContainer.SelectedIndex;
                 SplitContainer.Items.Insert(SplitContainer.SelectedIndex + 2, SplitContainer.SelectedItem);
@@ -107,7 +121,16 @@ namespace Splitterino
         {
             SaveGame();
 
-            Close();
+
+        }
+
+        private void SplitContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TitleInput.Text = SplitList[SplitContainer.SelectedIndex].GetTitle();
+            TargetHour.Text = SplitList[SplitContainer.SelectedIndex].Time.Hours.ToString();
+            TargetMin.Text = SplitList[SplitContainer.SelectedIndex].Time.Minutes.ToString();
+            TargetSec.Text = SplitList[SplitContainer.SelectedIndex].Time.Seconds.ToString();
+
         }
     }
 }

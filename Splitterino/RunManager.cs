@@ -103,7 +103,6 @@ namespace Splitterino
                 MainWindow.instance.splitCountBuffer = 0;
                 if (SPLT.LoadedGame != null)
                 {
-                    ClearUI();
                     MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
                 }
             }

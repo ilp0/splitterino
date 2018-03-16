@@ -67,7 +67,7 @@ namespace Splitterino
             try
             {
                 
-                Stream stream = File.Open(Directory.GetCurrentDirectory() + "\\SplitteroniPrefs.dat", FileMode.Open);
+                Stream stream = File.Open(Directory.GetCurrentDirectory() + "\\SplitteroniPrefs.dat", FileMode.OpenOrCreate);
                 BinaryFormatter formatter = new BinaryFormatter();
                 PreferencesSerializable p = (PreferencesSerializable)formatter.Deserialize(stream);
                 WindowAlwaysOnTop = p.WindowAlwaysOnTop;
@@ -82,8 +82,13 @@ namespace Splitterino
 
 
         }
+        /// <summary>
+        /// Loads preferences and updates the preferences tab with correct info.
+        /// </summary>
         public static void LoadPreferences()
         {
+
+
             if (WindowAlwaysOnTop)
             {
                 MainWindow.instance.Topmost = true;
@@ -110,12 +115,18 @@ namespace Splitterino
                 switch (DefaultComparisonSplits)
                 {
                     case 1:
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 1;
+                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 0;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
                         break;
                     case 2:
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 2;
+                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 1;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].TargetSplits);
                         break;
                     case 3:
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 3;
+                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 2;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
                         break;
                 }

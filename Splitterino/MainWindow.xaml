@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Splitterino" Height="776.206" Width="374" ResizeMode="CanMinimize" Topmost="True">
     <Grid Margin="0,0,4,0">
-        <TextBlock x:Name="MainTimerDisplay" Height="54" Margin="10,87,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
+        <TextBlock x:Name="MainTimerDisplay" Height="64" Margin="10,77,9.667,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
         <TabControl Margin="10,533,9.667,10" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Settings">
                 <Grid Background="#FFE5E5E5">
@@ -22,7 +22,7 @@
                     </Grid.ColumnDefinitions>
                     <Button x:Name="SelectSplitBtn" Content="Load split file..." Margin="0,10,9.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click" Grid.Column="1" Grid.ColumnSpan="2"/>
                     <TextBox x:Name="SplitFileName" Height="20" Margin="10,10,0,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="216"/>
-                    <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="157,73,9.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click" Grid.Column="1"/>
+                    <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="147,35,9.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Preferences">
@@ -32,7 +32,7 @@
                         <Button x:Name="SetCurrentGameDefaultBtn" Content="Set current game as default" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="164" Click="SetCurrentGameDefaultBtn_Click"/>
                         <Button x:Name="SelectDefaultGameBtn" Content="Select default Game" HorizontalAlignment="Left" Margin="179,123,0,0" VerticalAlignment="Top" Width="149" Click="SelectDefaultGameBtn_Click"/>
                         <ComboBox x:Name="ComparisonTimeComboBox" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="204">
-                            <ComboBoxItem Content="-- Select comparison time --" IsEnabled="False" IsSelected="True"/>
+                            <ComboBoxItem Content="-- Select default comparison time --" IsEnabled="False" IsSelected="True"/>
                             <ComboBoxItem x:Name="CombBoxPB" Content="Personal Best" Selected="CombBoxPB_Selected"/>
                             <ComboBoxItem x:Name="ComboBoxCustomTarget" Content="Custom Target Time" Selected="ComboBoxCustomTarget_Selected"/>
                             <ComboBoxItem x:Name="ComboBoxBestSplit" Content="Best Split" Selected="ComboBoxBestSplit_Selected"/>
@@ -60,23 +60,27 @@
             <TextBlock HorizontalAlignment="Left" Margin="0,297,0,0" TextWrapping="Wrap" Text="Sum of Best" VerticalAlignment="Top" Width="88"/>
             <TextBlock HorizontalAlignment="Left" Margin="133,297,0,0" TextWrapping="Wrap" Text="Target Time" VerticalAlignment="Top" Width="63"/>
             <TextBlock HorizontalAlignment="Left" Margin="258,297,0,0" TextWrapping="Wrap" Text="PB" VerticalAlignment="Top" Width="19" RenderTransformOrigin="0.737,2.062"/>
-            <TextBlock HorizontalAlignment="Left" Margin="165,10,0,0" TextWrapping="Wrap" Text="Compare" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="258,10,0,0" TextWrapping="Wrap" Text="Current Run" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,6,9.667,0" TextWrapping="Wrap" Text="Current Run" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77"/>
             <TextBlock x:Name="SOBTimeText" HorizontalAlignment="Left" Margin="0,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
             <TextBlock x:Name="TargetTimeText" HorizontalAlignment="Left" Margin="133,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
             <TextBlock x:Name="PBTimeText" HorizontalAlignment="Left" Margin="258,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-            <Grid Margin="0,318,0,1">
+            <Grid Margin="0,334,-0.333,1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="46" VerticalAlignment="Top" Margin="-2,10,267,0"/>
-                <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="0,10,162,0" VerticalAlignment="Top" Click="Stopbtn_Click" Height="46" HorizontalAlignment="Right" Width="100"/>
-                <Button x:Name="Splitbtn" Content="Split" Margin="0,10,82,0" Click="Splitbtn_Click" Height="46" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
-                <Button x:Name="Resetbtn" Content="Reset" Margin="0,10,0,0" VerticalAlignment="Top" Click="Resetbtn_Click" Height="46" HorizontalAlignment="Right" Width="77"/>
+                <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="46" VerticalAlignment="Top" Margin="-2,-1,267,0"/>
+                <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="0,-1,162,0" VerticalAlignment="Top" Click="Stopbtn_Click" Height="46" HorizontalAlignment="Right" Width="100"/>
+                <Button x:Name="Splitbtn" Content="Split" Margin="0,-1,82,0" Click="Splitbtn_Click" Height="46" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+                <Button x:Name="Resetbtn" Content="Reset" Margin="0,-1,0,0" VerticalAlignment="Top" Click="Resetbtn_Click" Height="46" HorizontalAlignment="Right" Width="77"/>
 
             </Grid>
+            <ComboBox x:Name="CurrentComparisonTime" Margin="0,0,92.667,0" VerticalAlignment="Top" SelectionChanged="CurrentComparisonTime_SelectionChanged" HorizontalAlignment="Right" Width="88">
+                <ComboBoxItem x:Name="CombBoxPB1" Content="PB" Selected="CombBoxPB_Selected" IsSelected="True"/>
+                <ComboBoxItem x:Name="ComboBoxCustomTarget1" Content="Target" Selected="ComboBoxCustomTarget_Selected"/>
+                <ComboBoxItem x:Name="ComboBoxBestSplit1" Content="Best" Selected="ComboBoxBestSplit_Selected"/>
+            </ComboBox>
         </Grid>
 
     </Grid>
