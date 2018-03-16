@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Splitterino
         public Window1()
         {
             InitializeComponent();
+            
         }
         /// <summary>
         /// Save button click function
@@ -42,6 +44,8 @@ namespace Splitterino
             c.TargetSplits = TargetSplitList;
             g.CategoryList.Add(c);
             SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games", g);
+            SplitList = null;
+            TargetSplitList = null;
             Close();
         }
 
@@ -55,10 +59,20 @@ namespace Splitterino
             Split s = new Split(TitleInput.Text);
             SplitContainer.Items.Add(s.GetTitle());
             TitleInput.Text = "";
+            TargetHour.Text = "";
+            TargetMin.Text = "";
+            TargetSec.Text = "";
             TitleInput.Focus();
             s.splitIndex = SplitContainer.Items.Count;
             //juu eihän tässä
-            if (TargetHour != null) TargetSplitList.Add(new Split(s.GetTitle()) { splitIndex = s.splitIndex, Time = new TimeSpan(int.Parse(TargetHour.Text), int.Parse(TargetMin.Text), int.Parse(TargetSec.Text)) });
+            try
+            {
+                if (TargetHour != null) TargetSplitList.Add(new Split(s.GetTitle()) { splitIndex = s.splitIndex, Time = new TimeSpan(int.Parse(TargetHour.Text), int.Parse(TargetMin.Text), int.Parse(TargetSec.Text)) });
+            }
+            catch
+            {
+                Debug.WriteLine("TargetTime setting failed");
+            }
             SplitList.Add(s);
 
         }
@@ -115,6 +129,10 @@ namespace Splitterino
         private void UpdateSelectedBtn_Click(object sender, RoutedEventArgs e)
         {
             SplitContainer.Items.Insert(SplitContainer.SelectedIndex, TitleInput.Text);
+            SplitList[SplitContainer.SelectedIndex].SetTitle(TitleInput.Text);
+            TimeSpan s = new TimeSpan(int.Parse(TargetHour.Text), int.Parse(TargetMin.Text), int.Parse(TargetSec.Text));
+            TargetSplitList[SplitContainer.SelectedIndex].SetTitle(TitleInput.Text);
+            TargetSplitList[SplitContainer.SelectedIndex].Time = s;
         }
 
         private void SaveAndLoadBtn_Click(object sender, RoutedEventArgs e)
@@ -127,9 +145,9 @@ namespace Splitterino
         private void SplitContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TitleInput.Text = SplitList[SplitContainer.SelectedIndex].GetTitle();
-            TargetHour.Text = SplitList[SplitContainer.SelectedIndex].Time.Hours.ToString();
-            TargetMin.Text = SplitList[SplitContainer.SelectedIndex].Time.Minutes.ToString();
-            TargetSec.Text = SplitList[SplitContainer.SelectedIndex].Time.Seconds.ToString();
+            TargetHour.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Hours.ToString();
+            TargetMin.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Minutes.ToString();
+            TargetSec.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Seconds.ToString();
 
         }
     }

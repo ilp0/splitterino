@@ -31,7 +31,7 @@
                         <CheckBox x:Name="WindowAlwaysOnTopCheckBox" Content="Splitterino always on top" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="196" Checked="WindowAlwaysOnTopCheckBox_Checked" Unchecked="WindowAlwaysOnTopCheckBox_Unchecked"/>
                         <Button x:Name="SetCurrentGameDefaultBtn" Content="Set current game as default" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" Width="164" Click="SetCurrentGameDefaultBtn_Click"/>
                         <Button x:Name="SelectDefaultGameBtn" Content="Select default Game" HorizontalAlignment="Left" Margin="179,123,0,0" VerticalAlignment="Top" Width="149" Click="SelectDefaultGameBtn_Click"/>
-                        <ComboBox x:Name="ComparisonTimeComboBox" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="204">
+                        <ComboBox x:Name="ComparisonTimeComboBox" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="229">
                             <ComboBoxItem Content="-- Select default comparison time --" IsEnabled="False" IsSelected="True"/>
                             <ComboBoxItem x:Name="CombBoxPB" Content="Personal Best" Selected="CombBoxPB_Selected"/>
                             <ComboBoxItem x:Name="ComboBoxCustomTarget" Content="Custom Target Time" Selected="ComboBoxCustomTarget_Selected"/>
