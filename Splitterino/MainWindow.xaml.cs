@@ -183,7 +183,7 @@ namespace Splitterino
 
         private void NewSplitsBtn_Click(object sender, RoutedEventArgs e)
         {
-            Window1 SplitWindow = new Window1();
+            Window1 SplitWindow = new Window1(new Game(), true);
             SplitWindow.Show();
         }
 
@@ -373,6 +373,28 @@ namespace Splitterino
 
 
                 }
+            }
+        }
+
+        private void EditSplitsbtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = Directory.GetCurrentDirectory() + "\\Data\\";
+            // Set filter for file extension and default file extensi on 
+            dialog.DefaultExt = ".splg";
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dialog.ShowDialog();
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                Stream stream = File.Open(dialog.FileName, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                Game g = (Game)formatter.Deserialize(stream);
+                Window1 w = new Window1(g, false);
+                w.Show();
+
             }
         }
     }
