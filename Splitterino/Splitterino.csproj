@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MultiRun.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Hotkeys.cs" />
     <Compile Include="RunManager.cs" />
