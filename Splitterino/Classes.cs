@@ -69,7 +69,9 @@ namespace Splitterino
         {
             game = g;
             Name = n;
+
         }
+        
         public Game game;
         public string Name { get; set; }
         private List<Split> splitList = new List<Split>();
@@ -86,6 +88,7 @@ namespace Splitterino
         public TimeSpan SOBTime = TimeSpan.Zero;
         // Sum of best segments splits
         public List<Split> SOBSplits = new List<Split>();
+
     }
 
     /// <summary>
@@ -95,7 +98,7 @@ namespace Splitterino
     public class Split
     {
         private string title;
-
+        public string mediaFile { get; set; }
         public int splitIndex = 0;
         public string GetTitle()
         {
@@ -136,6 +139,8 @@ namespace Splitterino
             return a.Time < b.Time;
         }
         public TimeSpan Time { get; set; }
+
+
 
     }
 

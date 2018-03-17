@@ -56,7 +56,9 @@ namespace Splitterino
                     BinaryFormatter formatter = new BinaryFormatter();
                     Game g = (Game)formatter.Deserialize(stream);
                     stream.Close();
-                    LoadedGame = g;
+                
+                LoadedGame = g;
+
                     MainWindow.instance.UpdateGUI(g, g.CategoryList[0]);
 
                 }
@@ -91,7 +93,29 @@ namespace Splitterino
                 s += "." + (ts.Milliseconds / 10).ToString();
             }
             return s;
-
+            
+            
         }
-	}
+        /// <summary>
+        /// Compares ts1 to ts2
+        /// </summary>
+        /// <param name="ts1"></param>
+        /// <param name="ts2"></param>
+        /// <returns></returns>
+        public static TimeSpan CompareTS(TimeSpan ts1, TimeSpan ts2)
+        {
+            return ts1 - ts2;
+            
+        }
+
+        public static TimeSpan CountTotalTime(List<Split> sL)
+        {
+            TimeSpan total = TimeSpan.Zero;
+            foreach (Split s in sL)
+            {
+                total += s.Time;
+            }
+            return total;
+        }
+    }
 }

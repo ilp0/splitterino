@@ -45,6 +45,7 @@ namespace Splitterino
             Debug.WriteLine(Directory.GetCurrentDirectory());
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
             
+            
         }
 
         /// <summary>
@@ -57,8 +58,18 @@ namespace Splitterino
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                currentTime = String.Format("{0:00}:{1:00}.{2:00}",
-                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                if(ts.Hours > 0)
+                {
+                    currentTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                }
+                else
+                {
+                    currentTime = String.Format("{0:00}:{1:00}.{2:00}",
+               ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                }
+                //TODO
+                
                 MainTimerDisplay.Text = currentTime;
             }
         }

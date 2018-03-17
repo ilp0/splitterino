@@ -18,12 +18,15 @@ namespace Splitterino
         {
             if (!MainWindow.instance.runInProgress)
             {
+
                 Run curRun = new Run();
                 curRun.game = MainWindow.instance.g;
                 MainWindow.instance.sw.Start();
                 MainWindow.instance.dt.Start();
                 lastTime = MainWindow.instance.sw.Elapsed;
                 MainWindow.instance.Startbtn.IsEnabled = false;
+                //SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games\\", SPLT.LoadedGame);
+
             }
         }
 
@@ -46,7 +49,7 @@ namespace Splitterino
             //add current time to right list of splits
             MainWindow.instance.elapsedtimeitem.Items.Add(MainWindow.instance.currentTime);
             //save to var
-            CurrentRunSplits.Add(new Splitterino.Split(MainWindow.instance.sw.Elapsed, CurrentSplitIndex));
+            CurrentRunSplits.Add(new Split(MainWindow.instance.sw.Elapsed - lastTime, CurrentSplitIndex));
             if(SPLT.LoadedGame != null)
             {   
                 //Jos Sum of Best splittejä on vähemmän kuin nykyinen splitti indexi
@@ -108,8 +111,33 @@ namespace Splitterino
                     MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
                 }
             }
-            CurrentSplitIndex++;
             lastTime = MainWindow.instance.sw.Elapsed;
+            /*for (int i = 0; i < CurrentSplitIndex; i++)
+            {
+                compareTime += SPLT.LoadedGame.CategoryList[0].SOBSplits[i].Time;
+            }
+            */
+            //toivottavasti toimii!
+            if(SPLT.LoadedGame.CategoryList[0].TargetSplits.Count > CurrentSplitIndex)
+            {
+                TimeSpan cmpr = SPLT.CountTotalTime(CurrentRunSplits) - SPLT.CountTotalTime(new List<Split>(SPLT.LoadedGame.CategoryList[0].SOBSplits.GetRange(0, CurrentSplitIndex)));
+                string cmprTime = "";
+                if (cmpr.Ticks < 0)
+            {
+                cmpr.Negate();
+                cmprTime = "-";
+            }
+            else
+            {
+                cmprTime = "+";
+            }
+            cmprTime += SPLT.TimeSpanToString(cmpr);
+            MainWindow.instance.CurrentRunCmprListbox.Items.Add(cmprTime);
+            }
+
+            CurrentSplitIndex++;
+
+
         }
 
         public static void Reset ()
@@ -140,9 +168,11 @@ namespace Splitterino
             MainWindow.instance.TargetTimeContainer.Items.Clear();
             if(SPLT.LoadedGame != null)
             {
+                TimeSpan tts = new TimeSpan();
                 for (int i = 0; i < sl.Count; i++)
                 {
-                    string a = SPLT.TimeSpanToString(sl[i].Time);
+                    tts += sl[i].Time;
+                    string a = SPLT.TimeSpanToString(tts);
                     //string a = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetSplits[i].Time);
                     //string a = String.Format("{0:00}:{1:00}.{2:00}",
                     //SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Minutes, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Seconds, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Milliseconds / 10);
@@ -162,6 +192,7 @@ namespace Splitterino
             MainWindow.instance.TargetTimeContainer.Items.Clear();
             MainWindow.instance.elapsedtimeitem.Items.Clear();
             MainWindow.instance.Splititemlist.Items.Clear();
+            MainWindow.instance.CurrentRunCmprListbox.Items.Clear();
 
         }
     }

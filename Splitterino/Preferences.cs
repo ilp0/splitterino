@@ -94,7 +94,7 @@ namespace Splitterino
         public static void LoadPreferences()
         {
 
-
+            MainWindow.instance.ShowMSChkBox.IsChecked = ShowMS;
             if (WindowAlwaysOnTop)
             {
                 MainWindow.instance.Topmost = true;
