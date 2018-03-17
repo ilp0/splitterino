@@ -227,7 +227,7 @@ namespace Splitterino
             var helper = new WindowInteropHelper(this);
             //const uint VK_F10 = 0x79;
             const uint MOD_CTRL = 0x0002;
-            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, MOD_CTRL, Key))
+            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0, Key))
             {
                 // handle error
             }

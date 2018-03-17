@@ -41,6 +41,8 @@ namespace Splitterino
 
         public static void Split ()
         {
+            if (!MainWindow.instance.sw.IsRunning)
+                return;
             //add current time to right list of splits
             MainWindow.instance.elapsedtimeitem.Items.Add(MainWindow.instance.currentTime);
             //save to var
