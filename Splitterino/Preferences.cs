@@ -17,6 +17,7 @@ namespace Splitterino
     {
         public bool WindowAlwaysOnTop { get; set; }
         public bool SavePrefsOnQuit { get; set; }
+        public bool ShowMS { get; set; }
         public string DefaultGamePath { get; set; }
         public int DefaultComparisonSplits { get; set; }
         public TimeSpan DefaultTargetTime { get; set; }
@@ -28,6 +29,7 @@ namespace Splitterino
     {
         public static bool WindowAlwaysOnTop { get; set; }
         public static bool SavePrefsOnQuit { get; set; }
+        public static bool ShowMS { get; set; }
         public static string DefaultGamePath { get; set; }
         public static int DefaultComparisonSplits { get; set; }
         public static TimeSpan DefaultTargetTime { get; set; }
@@ -48,14 +50,17 @@ namespace Splitterino
                 p.DefaultGamePath = DefaultGamePath;
                 p.DefaultComparisonSplits = DefaultComparisonSplits;
                 p.DefaultTargetTime = DefaultTargetTime;
+                p.ShowMS = ShowMS;
 
                 Stream stream = File.Open(Directory.GetCurrentDirectory() + "\\SplitteroniPrefs.dat", FileMode.Create);
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, p);
                 stream.Close();
+                
             } catch
             {
                 Debug.WriteLine("Failed to serialize");
+                
             }
 
         }
@@ -75,6 +80,7 @@ namespace Splitterino
                 DefaultGamePath = p.DefaultGamePath;
                 DefaultComparisonSplits = p.DefaultComparisonSplits;
                 DefaultTargetTime = p.DefaultTargetTime;
+                ShowMS = p.ShowMS;
             } catch
             {
                 Debug.WriteLine("Failed to deserialize");
@@ -118,16 +124,19 @@ namespace Splitterino
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 1;
                         MainWindow.instance.CurrentComparisonTime.SelectedIndex = 0;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 1;
                         break;
                     case 2:
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 2;
                         MainWindow.instance.CurrentComparisonTime.SelectedIndex = 1;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].TargetSplits);
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 2;
                         break;
                     case 3:
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 3;
                         MainWindow.instance.CurrentComparisonTime.SelectedIndex = 2;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
+                        MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 3;
                         break;
                 }
             } catch
@@ -144,7 +153,6 @@ namespace Splitterino
 
             if (SavePrefsOnQuit) MainWindow.instance.SavePreferencesOnQuitChkBox.IsChecked = true;
             else MainWindow.instance.SavePreferencesOnQuitChkBox.IsChecked = false;
-            
             
         }
     }

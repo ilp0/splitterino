@@ -323,18 +323,18 @@ namespace Splitterino
         private void ComboBoxBestSplit_Selected(object sender, RoutedEventArgs e)
         {
             Preferences.DefaultComparisonSplits = 3;
-            if (SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
+            //if (SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
         }
 
         private void ComboBoxCustomTarget_Selected(object sender, RoutedEventArgs e)
         {
-
+            Preferences.DefaultComparisonSplits = 2;
         }
 
         private void CombBoxPB_Selected(object sender, RoutedEventArgs e)
         {
             Preferences.DefaultComparisonSplits = 1;
-            if(SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
+            //if(SPLT.LoadedGame != null) RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
 
         }
 
@@ -348,6 +348,8 @@ namespace Splitterino
         private void SavePrefsBtn_Click(object sender, RoutedEventArgs e)
         {
             Preferences.Serialize();
+            MessageBox.Show("Splitterino", "Preferences saved succesfully!", System.Windows.MessageBoxButton.OK);
+            
         }
 
         private void SavePreferencesOnQuitChkBox_Checked(object sender, RoutedEventArgs e)
@@ -396,6 +398,16 @@ namespace Splitterino
                 w.Show();
 
             }
+        }
+
+        private void ShowMSChkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Preferences.ShowMS = true;
+        }
+
+        private void ShowMSChkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Preferences.ShowMS = false;
         }
     }
 }

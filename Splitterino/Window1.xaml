@@ -27,10 +27,10 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Title" VerticalAlignment="Top" Width="132" Height="16"/>
             <TextBox x:Name="NoteInput" HorizontalAlignment="Left" Height="66" Margin="0,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Optional notes" VerticalAlignment="Top" Width="132" Height="16" Margin="0,164,0,0"/>
-            <TextBox x:Name="TargetHour" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="14,69,0,0" MaxLines="1" MaxLength="2"/>
+            <TextBox x:Name="TargetHour" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="14,69,0,0" MaxLines="1" MaxLength="2" Text="0"/>
             <TextBlock x:Name="World_Record" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Target Time (optional)" VerticalAlignment="Top" Width="132" Margin="0,48,0,0"/>
-            <TextBox x:Name="TargetMin" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="54,69,0,0" MaxLines="1" MaxLength="2"/>
-            <TextBox x:Name="TargetSec" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="94,69,0,0" MaxLines="1" MaxLength="2"/>
+            <TextBox x:Name="TargetMin" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="54,69,0,0" MaxLines="1" MaxLength="2" Text="0"/>
+            <TextBox x:Name="TargetSec" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="24" Margin="94,69,0,0" MaxLines="1" MaxLength="2" Text="0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="H" VerticalAlignment="Top" Width="14" Margin="0,75,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="M" VerticalAlignment="Top" Width="14" Margin="42,75,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="S" VerticalAlignment="Top" Width="14" Margin="84,75,0,0"/>
@@ -40,9 +40,8 @@
         <Button x:Name="PriorityDownBtn" Content="v&#xD;&#xA;" HorizontalAlignment="Left" Height="32" Margin="231.863,86,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-0.284,1.267" Click="PriorityDownBtn_Click" Grid.Column="1"/>
         <Separator HorizontalAlignment="Left" Height="17" Margin="231.863,33,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1"/>
         <Grid Margin="231.863,0,9.667,10" Height="55" VerticalAlignment="Bottom" Grid.Column="1">
-            <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="3,34,0,0" VerticalAlignment="Top" Width="59" IsCancel="True" Height="21"/>
-            <Button x:Name="SaveAndLoadBtn" Content="Save &amp; Load" HorizontalAlignment="Left" Margin="67,34,0,0" VerticalAlignment="Top" Width="82" Height="21" Click="SaveAndLoadBtn_Click"/>
-            <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="154,34,0,0" VerticalAlignment="Top" Width="58" Height="21" Click="Save_Click"/>
+            <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="3,34,0,0" VerticalAlignment="Top" Width="103" IsCancel="True" Height="21" Click="Cancel_Click"/>
+            <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="111,34,0,0" VerticalAlignment="Top" Width="101" Height="21" Click="Save_Click"/>
             <Button x:Name="UpdateSelectedBtn" Content="Update Selected" HorizontalAlignment="Left" Margin="3,10,0,0" VerticalAlignment="Top" Width="103" Click="UpdateSelectedBtn_Click"/>
             <Button x:Name="RemoveSelectedBtn" Content="Remove Selected" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top" Width="101" Click="RemoveSelectedBtn_Click"/>
             <Separator HorizontalAlignment="Left" Height="10" Margin="0" VerticalAlignment="Top" Width="212"/>

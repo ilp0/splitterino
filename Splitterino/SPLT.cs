@@ -75,8 +75,23 @@ namespace Splitterino
         /// <returns></returns>
         public static string TimeSpanToString(TimeSpan ts)
         {
-            return String.Format("{0:00}:{1:00}.{2:00}",
-            ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            string s = "";
+            s = "";
+            if(ts.Hours != 0)
+            {
+                s += String.Format("{0:00}:{1:00}:{2:00}",
+                ts.Hours, ts.Minutes, ts.Seconds);
+            } else
+            {
+                s += String.Format("{0:00}:{1:00}",
+                ts.Minutes, ts.Seconds);
+            }
+            if (Preferences.ShowMS)
+            {
+                s += "." + (ts.Milliseconds / 10).ToString();
+            }
+            return s;
+
         }
 	}
 }
