@@ -28,19 +28,20 @@ namespace Splitterino
         public Window1(Game g, bool isNew)
         {
             InitializeComponent();
-            if(!isNew)
+            
+            if (!isNew)
             {
+                SplitList = g.CategoryList[0].SplitList;
+                TargetSplitList = g.CategoryList[0].TargetSplits;
                 GameName.Text = g.GetName();
                 CategoryName.Text = g.CategoryList[0].Name;
                 ConsoleName.Text = g.GetConsole();
-                SplitList = g.CategoryList[0].SplitList;
-                TargetSplitList = g.CategoryList[0].TargetSplits;
                 for (int i = 0; i < SplitList.Count; i++)
                 {
                     SplitContainer.Items.Add(SplitList[i].GetTitle());
                 }
             }
-            
+
         }
         /// <summary>
         /// Save button click function
@@ -49,6 +50,7 @@ namespace Splitterino
         /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+
             Game g = new Game(GameName.Text, ConsoleName.Text);
             Category c = new Category(g, CategoryName.Text);
 
@@ -56,8 +58,7 @@ namespace Splitterino
             c.TargetSplits = TargetSplitList;
             g.CategoryList.Add(c);
             SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games", g);
-            SplitList = null;
-            TargetSplitList = null;
+            MessageBox.Show("Saved split file to " + Directory.GetCurrentDirectory() + "\\Data\\Games", "Splitterino" + g.GetName() + ".splg", System.Windows.MessageBoxButton.OK);
             Close();
         }
 
@@ -92,9 +93,9 @@ namespace Splitterino
                 Debug.WriteLine("TargetTime setting failed");
             }
             TitleInput.Text = "";
-            TargetHour.Text = "";
-            TargetMin.Text = "";
-            TargetSec.Text = "";
+            TargetHour.Text = "0";
+            TargetMin.Text = "0";
+            TargetSec.Text = "0";
             SplitList.Add(s);
 
         }
@@ -145,36 +146,43 @@ namespace Splitterino
 
         private void RemoveSelectedBtn_Click(object sender, RoutedEventArgs e)
         {
-            SplitContainer.Items.RemoveAt(SplitContainer.SelectedIndex);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to remove split?","Are you sure?", System.Windows.MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                SplitList.RemoveAt(SplitContainer.SelectedIndex - 1);
+                TargetSplitList.RemoveAt(SplitContainer.SelectedIndex - 1);
+                SplitContainer.Items.RemoveAt(SplitContainer.SelectedIndex);
+            }
+
         }
 
         private void UpdateSelectedBtn_Click(object sender, RoutedEventArgs e)
         {
-            SplitContainer.Items.Insert(SplitContainer.SelectedIndex, TitleInput.Text);
-            SplitList[SplitContainer.SelectedIndex].SetTitle(TitleInput.Text);
+            int sI = SplitContainer.SelectedIndex;
+            SplitList[sI].SetTitle(TitleInput.Text);
             TimeSpan s = new TimeSpan(int.Parse(TargetHour.Text), int.Parse(TargetMin.Text), int.Parse(TargetSec.Text));
-            TargetSplitList[SplitContainer.SelectedIndex].SetTitle(TitleInput.Text);
-            TargetSplitList[SplitContainer.SelectedIndex].Time = s;
-        }
-
-        private void SaveAndLoadBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SaveGame();
-
-
+            TargetSplitList[sI].SetTitle(TitleInput.Text);
+            TargetSplitList[sI].Time = s;
+            SplitContainer.Items.Insert(sI + 1, TitleInput.Text);
+            SplitContainer.Items.RemoveAt(sI);
+            SplitContainer.SelectedIndex = sI;
+            sI = 0;
         }
 
         private void SplitContainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(SplitContainer.SelectedIndex > -1) TitleInput.Text = SplitList[SplitContainer.SelectedIndex].GetTitle();
-            if (TargetHour != null)
+            if (SplitContainer.SelectedIndex > -1)
             {
-            
+                TitleInput.Text = SplitList[SplitContainer.SelectedIndex].GetTitle();
                 TargetHour.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Hours.ToString();
                 TargetMin.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Minutes.ToString();
                 TargetSec.Text = TargetSplitList[SplitContainer.SelectedIndex].Time.Seconds.ToString();
             }
+        }
 
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

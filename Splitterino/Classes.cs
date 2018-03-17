@@ -135,15 +135,6 @@ namespace Splitterino
         {
             return a.Time < b.Time;
         }
-        /*
-        //Best time all time
-        public TimeSpan BestTime { get; set; }
-        //Split time from PB
-        public TimeSpan PersonalBestTime { get; set; }
-        //optional target time
-        public TimeSpan TargetTime { get; set; }
-        */
-        //current run time
         public TimeSpan Time { get; set; }
 
     }
