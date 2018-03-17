@@ -18,6 +18,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Net;
 
 namespace Splitterino
 {
@@ -44,7 +45,7 @@ namespace Splitterino
             Preferences.LoadPreferences();
             Debug.WriteLine(Directory.GetCurrentDirectory());
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            
+
         }
 
         /// <summary>
