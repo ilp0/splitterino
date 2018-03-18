@@ -289,7 +289,7 @@ namespace Splitterino
                                     RunManager.Reset();
                                     break;
                             }
-                            if (!sw.IsRunning)
+                            if (!runInProgress)
                             {
                                 RunManager.TimerStart();
                             } else

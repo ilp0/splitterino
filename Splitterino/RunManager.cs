@@ -28,7 +28,7 @@ namespace Splitterino
                 lastTime = MainWindow.instance.sw.Elapsed;
                 MainWindow.instance.Startbtn.IsEnabled = false;
                 //SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games\\", SPLT.LoadedGame);
-
+                MainWindow.instance.runInProgress = true;
             }
         }
 
@@ -162,6 +162,7 @@ namespace Splitterino
             ClearUI();
             MainWindow.instance.ScrollSplitViewToTop();
             MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
+            MainWindow.instance.runInProgress = false;
         }
         /// <summary>
         /// Writes target time to UI. Gets the targetsplits from passed on property
