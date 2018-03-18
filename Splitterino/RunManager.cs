@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Splitterino
 {
@@ -118,23 +120,29 @@ namespace Splitterino
             }
             */
             //toivottavasti toimii!
-            if(SPLT.LoadedGame.CategoryList[0].TargetSplits.Count > CurrentSplitIndex)
+            if(SPLT.LoadedGame.CategoryList[0].PBSplits.Count > CurrentSplitIndex)
             {
-                TimeSpan cmpr = SPLT.CountTotalTime(CurrentRunSplits) - SPLT.CountTotalTime(new List<Split>(SPLT.LoadedGame.CategoryList[0].SOBSplits.GetRange(0, CurrentSplitIndex)));
+                TimeSpan cmpr = SPLT.CountTotalTime(new List<Split>(SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, CurrentSplitIndex + 1))) - SPLT.CountTotalTime(CurrentRunSplits);
                 string cmprTime = "";
                 if (cmpr.Ticks < 0)
-            {
-                cmpr.Negate();
-                cmprTime = "-";
+                {
+                    cmpr.Negate();
+                    cmprTime = "+";
+                }
+                else
+                {
+                    cmprTime = "-";
+                }
+                cmprTime += SPLT.TimeSpanToString(cmpr);
+                MainWindow.instance.CurrentRunCmprListbox.Items.Add(cmprTime);
+                //if(SPLT.LoadedGame.CategoryList[0].PBSplits[CurrentSplitIndex].Time < SPLT.LoadedGame.CategoryList[0].PBSplits[CurrentSplitIndex].Time)
+                //{
+                    
+                //}
+                cmpr = TimeSpan.Zero;
+                cmprTime = "";
             }
-            else
-            {
-                cmprTime = "+";
-            }
-            cmprTime += SPLT.TimeSpanToString(cmpr);
-            MainWindow.instance.CurrentRunCmprListbox.Items.Add(cmprTime);
-            }
-
+            
             CurrentSplitIndex++;
 
 
