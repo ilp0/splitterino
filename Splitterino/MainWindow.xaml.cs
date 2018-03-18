@@ -289,7 +289,14 @@ namespace Splitterino
                                     RunManager.Reset();
                                     break;
                             }
-                            RunManager.Split();
+                            if (!sw.IsRunning)
+                            {
+                                RunManager.TimerStart();
+                            } else
+                            {
+                                RunManager.Split();
+                            }
+                            
                             handled = true;
                             break;
                     }
