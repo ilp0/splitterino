@@ -122,19 +122,19 @@ namespace Splitterino
                 {
                     case 1:
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 1;
-                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 0;
+                        //MainWindow.instance.CurrentComparisonTime.SelectedIndex = 0;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].PBSplits);
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 1;
                         break;
                     case 2:
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 2;
-                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 1;
+                        //MainWindow.instance.CurrentComparisonTime.SelectedIndex = 1;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].TargetSplits);
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 2;
                         break;
                     case 3:
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 3;
-                        MainWindow.instance.CurrentComparisonTime.SelectedIndex = 2;
+                        //MainWindow.instance.CurrentComparisonTime.SelectedIndex = 2;
                         RunManager.WriteTargetTime(SPLT.LoadedGame.CategoryList[0].SOBSplits);
                         MainWindow.instance.ComparisonTimeComboBox.SelectedIndex = 3;
                         break;
@@ -145,7 +145,7 @@ namespace Splitterino
             }
             try
             {
-                MainWindow.instance.TargetTimeText.Text = SPLT.TimeSpanToString(DefaultTargetTime);
+                MainWindow.instance.TargetTimeText.Text = SPLT.TimeSpanToString(DefaultTargetTime, false);
             } catch
             {
                 Debug.WriteLine("Failed to set defaultTargetTime");

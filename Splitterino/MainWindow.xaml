@@ -56,9 +56,10 @@
         <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Height="28" Width="162" TextAlignment="Right" FontSize="16"/>
         <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,59,9.667,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Height="28" Width="160" FontSize="16"/>
         <Grid Margin="10,146,10,214">
-            <ListBox x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="88" Margin="0,27,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ListBox x:Name="Splititemlist" Height="265" VerticalAlignment="Top" Margin="0,27,0,0" SelectionChanged="Splititemlist_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" Width="88"/>
-            <ListBox x:Name="TargetTimeContainer" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="85" Margin="0,27,166.667,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            <ItemsControl x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="88" Margin="0,27,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            <ItemsControl x:Name="Splititemlist" Height="265" VerticalAlignment="Top" Margin="0,27,166.667,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            <!--<ListBox x:Name="TargetTimeContainer" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="85" Margin="0,27,166.667,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            -->
             <TextBlock HorizontalAlignment="Left" Margin="0,297,0,0" TextWrapping="Wrap" Text="Sum of Best" VerticalAlignment="Top" Width="88"/>
             <TextBlock HorizontalAlignment="Left" Margin="133,297,0,0" TextWrapping="Wrap" Text="Target Time" VerticalAlignment="Top" Width="63"/>
             <TextBlock HorizontalAlignment="Left" Margin="258,297,0,0" TextWrapping="Wrap" Text="PB" VerticalAlignment="Top" Width="19" RenderTransformOrigin="0.737,2.062"/>
@@ -78,12 +79,14 @@
                 <Button x:Name="Resetbtn" Content="Reset" Margin="0,-1,0,0" VerticalAlignment="Top" Click="Resetbtn_Click" Height="46" HorizontalAlignment="Right" Width="77"/>
 
             </Grid>
+            <!--
             <ComboBox x:Name="CurrentComparisonTime" Margin="0,0,169.667,0" VerticalAlignment="Top" SelectionChanged="CurrentComparisonTime_SelectionChanged" HorizontalAlignment="Right" Width="82">
                 <ComboBoxItem x:Name="CombBoxPB1" Content="PB" Selected="CombBoxPB_Selected" IsSelected="True"/>
                 <ComboBoxItem x:Name="ComboBoxCustomTarget1" Content="Target" Selected="ComboBoxCustomTarget_Selected"/>
                 <ComboBoxItem x:Name="ComboBoxBestSplit1" Content="Best" Selected="ComboBoxBestSplit_Selected"/>
             </ComboBox>
-            <ListBox x:Name="CurrentRunCmprListbox" Height="265" Margin="0,27,92.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="69" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            -->
+            <ItemsControl x:Name="CurrentRunCmprListbox" Height="265" Margin="0,27,92.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="69" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
             <TextBlock Margin="0,6,84.667,0" TextWrapping="Wrap" Text="+/-" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77"/>
         </Grid>
 

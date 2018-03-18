@@ -58,7 +58,7 @@ namespace Splitterino
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                if(ts.Hours > 0)
+                if (ts.Hours > 0)
                 {
                     currentTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
                 ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
@@ -69,7 +69,16 @@ namespace Splitterino
                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
                 }
                 //TODO
-                
+                //mitä vittua
+                //CurrentRunCmprListbox.Items.Add(SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex + 1)))));
+                List<Split> a = SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex + 1);
+                if (RunManager.CurrentSplitIndex < SPLT.LoadedGame.CategoryList[0].PBSplits.Count) CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(a)), true);
+                //((CompareTimeClass)CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex]).TimeString = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex))));
+                CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex];
+
+
+                //CurrentRunCmprListbox.Items.RemoveAt(RunManager.CurrentSplitIndex);
+
                 MainTimerDisplay.Text = currentTime;
             }
         }
@@ -123,9 +132,9 @@ namespace Splitterino
             CategoryTitle.Text = cat.Name;
             if (SPLT.LoadedGame != null)
             {
-                SOBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].SOBTime);
-                PBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].PersonalBest);
-                TargetTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetTime);
+                SOBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].SOBTime, false);
+                PBTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].PersonalBest, false);
+                TargetTimeText.Text = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetTime, false);
             }
             Splititemlist.Items.Clear();
             foreach (Split s in cat.SplitList)
@@ -153,20 +162,22 @@ namespace Splitterino
 
         public void ScrollSplitViewToBottom()
         {
-            elapsedtimeitem.SelectedIndex = elapsedtimeitem.Items.Count - 1;
+            /*elapsedtimeitem.SelectedIndex = elapsedtimeitem.Items.Count - 1;
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
             Splititemlist.SelectedIndex = splitCountBuffer + 1;
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
-
+            */
         }
 
         public void ScrollSplitViewToTop()
         {
+            /*
             elapsedtimeitem.SelectedIndex = 0;
             elapsedtimeitem.ScrollIntoView(elapsedtimeitem.SelectedItem);
             Splititemlist.SelectedIndex = 0;
             Splititemlist.ScrollIntoView(Splititemlist.SelectedItem);
-        }
+            */
+            }
 
         private void SelectSplitBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -367,7 +378,7 @@ namespace Splitterino
         {
             Preferences.SavePrefsOnQuit = true;
         }
-
+        /*
         private void CurrentComparisonTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SPLT.LoadedGame != null)
@@ -388,6 +399,7 @@ namespace Splitterino
                 }
             }
         }
+        */
 
         private void EditSplitsbtn_Click(object sender, RoutedEventArgs e)
         {

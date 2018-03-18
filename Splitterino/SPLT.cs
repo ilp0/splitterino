@@ -75,10 +75,18 @@ namespace Splitterino
         /// </summary>
         /// <param name="ts"></param>
         /// <returns></returns>
-        public static string TimeSpanToString(TimeSpan ts)
+        public static string TimeSpanToString(TimeSpan ts, bool showSign)
         {
             string s = "";
-            s = "";
+            if (showSign)
+            {
+                if (ts.Ticks < 0)
+                {
+                    ts = ts.Negate();
+                    s = "-";
+                }
+                else s = "+";
+            }
             if(ts.Hours != 0)
             {
                 s += String.Format("{0:00}:{1:00}:{2:00}",

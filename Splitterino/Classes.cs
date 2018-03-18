@@ -160,5 +160,16 @@ namespace Splitterino
         public List<Split> Splits = new List<Split>();
     }
 
-
+    public class CompareTimeClass
+    {
+        public string TimeString { get; set; }
+        public CompareTimeClass(string t)
+        {
+            TimeString = t;
+        }
+        public override string ToString()
+        {
+            return TimeString;
+        }
+    }
 }

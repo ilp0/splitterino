@@ -20,7 +20,7 @@ namespace Splitterino
         {
             if (!MainWindow.instance.runInProgress)
             {
-
+                MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass("0"));
                 Run curRun = new Run();
                 curRun.game = MainWindow.instance.g;
                 MainWindow.instance.sw.Start();
@@ -133,8 +133,8 @@ namespace Splitterino
                 {
                     cmprTime = "-";
                 }
-                cmprTime += SPLT.TimeSpanToString(cmpr);
-                MainWindow.instance.CurrentRunCmprListbox.Items.Add(cmprTime);
+                cmprTime += SPLT.TimeSpanToString(cmpr, true);
+                //MainWindow.instance.CurrentRunCmprListbox.Items.Add(cmprTime);
                 //if(SPLT.LoadedGame.CategoryList[0].PBSplits[CurrentSplitIndex].Time < SPLT.LoadedGame.CategoryList[0].PBSplits[CurrentSplitIndex].Time)
                 //{
                     
@@ -142,7 +142,8 @@ namespace Splitterino
                 cmpr = TimeSpan.Zero;
                 cmprTime = "";
             }
-            
+
+            MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass(""));
             CurrentSplitIndex++;
 
 
@@ -173,18 +174,18 @@ namespace Splitterino
                 SPLT.LoadedGame.CategoryList[0].TargetSplits = SPLT.LoadedGame.CategoryList[0].PBSplits;
             }
             */
-            MainWindow.instance.TargetTimeContainer.Items.Clear();
+            //MainWindow.instance.TargetTimeContainer.Items.Clear();
             if(SPLT.LoadedGame != null)
             {
                 TimeSpan tts = new TimeSpan();
                 for (int i = 0; i < sl.Count; i++)
                 {
                     tts += sl[i].Time;
-                    string a = SPLT.TimeSpanToString(tts);
+                    string a = SPLT.TimeSpanToString(tts, false);
                     //string a = SPLT.TimeSpanToString(SPLT.LoadedGame.CategoryList[0].TargetSplits[i].Time);
                     //string a = String.Format("{0:00}:{1:00}.{2:00}",
                     //SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Minutes, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Seconds, SPLT.LoadedGame.CategoryList[0].PBSplits[i].Time.Milliseconds / 10);
-                    MainWindow.instance.TargetTimeContainer.Items.Add(a);
+                    //MainWindow.instance.TargetTimeContainer.Items.Add(a);
                 }
 
             } else
@@ -197,7 +198,7 @@ namespace Splitterino
 
         public static void ClearUI()
         {
-            MainWindow.instance.TargetTimeContainer.Items.Clear();
+            //MainWindow.instance.TargetTimeContainer.Items.Clear();
             MainWindow.instance.elapsedtimeitem.Items.Clear();
             MainWindow.instance.Splititemlist.Items.Clear();
             MainWindow.instance.CurrentRunCmprListbox.Items.Clear();
