@@ -102,7 +102,7 @@ namespace Splitterino
             }
             if (Preferences.ShowMS)
             {
-                s += "." + (ts.Milliseconds / 10).ToString();
+                s += String.Format(".{0:00}", (ts.Milliseconds / 10));
             }
             return s;
             

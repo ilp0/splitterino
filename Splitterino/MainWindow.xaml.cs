@@ -58,7 +58,7 @@ namespace Splitterino
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                if (ts.Hours > 0)
+                /*if (ts.Hours > 0)
                 {
                     currentTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
                 ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
@@ -68,6 +68,8 @@ namespace Splitterino
                     currentTime = String.Format("{0:00}:{1:00}.{2:00}",
                ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
                 }
+                */
+                currentTime = SPLT.TimeSpanToString(ts, false);
                 //TODO
                 //mitä vittua
                 //CurrentRunCmprListbox.Items.Add(SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex + 1)))));
