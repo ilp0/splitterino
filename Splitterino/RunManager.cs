@@ -20,7 +20,7 @@ namespace Splitterino
         {
             if (!MainWindow.instance.runInProgress)
             {
-                MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass("0"));
+                MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass(""));
                 Run curRun = new Run();
                 curRun.game = MainWindow.instance.g;
                 MainWindow.instance.sw.Start();

@@ -91,10 +91,14 @@ namespace Splitterino
             {
                 s += String.Format("{0:00}:{1:00}:{2:00}",
                 ts.Hours, ts.Minutes, ts.Seconds);
-            } else
+            } else if (ts.Minutes != 0)
             {
                 s += String.Format("{0:00}:{1:00}",
                 ts.Minutes, ts.Seconds);
+            } else
+            {
+                s += String.Format("{0:00}",
+                ts.Seconds);
             }
             if (Preferences.ShowMS)
             {
