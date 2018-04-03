@@ -42,6 +42,26 @@ namespace Splitterino
                     Debug.WriteLine("save failed");
                 }
         }
+
+        public static void WriteRunToFile(string path, Run run)
+        {
+            try
+            {
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "//Data//Runs//"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "//Data//Runs//");
+                    Debug.WriteLine("created directory at " + Directory.GetCurrentDirectory() + "//Data//Runs//");
+                }
+                Stream stream = File.Open(path + "\\" + run.TimeStamp.ToLongDateString() + "_" + run.Game.GetName() + ".splr", FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, run);
+                stream.Close();
+            }
+            catch
+            {
+                Debug.WriteLine("save failed");
+            }
+        }
         /// <summary>
         /// Reads and loads .splg file
         /// </summary>

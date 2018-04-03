@@ -12,20 +12,19 @@ namespace Splitterino
 {
     public class RunManager
     {
-
-        public static List<Split> CurrentRunSplits = new List<Splitterino.Split>();
+        //tämä run
+        public static Run r = new Run();
+        public static List<Split> CurrentRunSplits = new List<Split>();
         public static int CurrentSplitIndex = 0;
         public static TimeSpan lastTime = TimeSpan.Zero;
+        RunManager()
+        {
+            r.Game = MainWindow.instance.g;
+        }
         public static void TimerStart ()
         {
             if (!MainWindow.instance.runInProgress)
             {
-                MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass(""));
-                /* Run curRun = new Run()
-                {
-                    game = MainWindow.instance.g
-                };
-                */
                 MainWindow.instance.sw.Start();
                 MainWindow.instance.dt.Start();
                 lastTime = MainWindow.instance.sw.Elapsed;
@@ -106,6 +105,9 @@ namespace Splitterino
                         SPLT.WriteFile(Directory.GetCurrentDirectory() + "\\Data\\Games\\", SPLT.LoadedGame);
                     }
                 }
+                r.Time = MainWindow.instance.sw.Elapsed;
+                r.Splits = CurrentRunSplits;
+                SPLT.WriteRunToFile(Directory.GetCurrentDirectory() + "\\Data\\Runs\\", r);
                 MainWindow.instance.sw.Stop();
                 MainWindow.instance.Splitbtn.IsEnabled = false;
                 MainWindow.instance.Stopbtn.IsEnabled = false;

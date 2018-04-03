@@ -151,8 +151,8 @@ namespace Splitterino
         {
             TimeStamp = DateTime.Now;
         }
-        private uint runID { get; set; }
-        public Game game { get; set; }
+        private uint RunID { get; set; }
+        public Game Game { get; set; }
         public DateTime TimeStamp { get; protected set; }
         // Total Run time
         public TimeSpan Time = TimeSpan.Zero;
