@@ -58,17 +58,6 @@ namespace Splitterino
             if (sw.IsRunning)
             {
                 TimeSpan ts = sw.Elapsed;
-                /*if (ts.Hours > 0)
-                {
-                    currentTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                }
-                else
-                {
-                    currentTime = String.Format("{0:00}:{1:00}.{2:00}",
-               ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                }
-                */
                 currentTime = SPLT.TimeSpanToString(ts, false);
                 //TODO
                 //mitä vittua
@@ -78,13 +67,7 @@ namespace Splitterino
                     List<Split> a = SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex + 1);
                     if (RunManager.CurrentSplitIndex < SPLT.LoadedGame.CategoryList[0].PBSplits.Count) CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(a)), true);
                 }
-               
-                //((CompareTimeClass)CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex]).TimeString = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex))));
                 CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex];
-
-
-                //CurrentRunCmprListbox.Items.RemoveAt(RunManager.CurrentSplitIndex);
-
                 MainTimerDisplay.Text = currentTime;
             }
         }
@@ -132,7 +115,10 @@ namespace Splitterino
         /// <param name="cat"></param>
         public void UpdateGUI(Game g, Category cat)
         {
-            
+            MainWindow.instance.Startbtn.IsEnabled = true;
+            MainWindow.instance.Resetbtn.IsEnabled = true;
+            MainWindow.instance.Splitbtn.IsEnabled = true;
+            MainWindow.instance.Stopbtn.IsEnabled = true;
             GameTitle.Text = g.GetName();
             ConsoleTitle.Text = g.GetConsole();
             CategoryTitle.Text = cat.Name;
@@ -254,7 +240,6 @@ namespace Splitterino
         {
             var helper = new WindowInteropHelper(this);
             //const uint VK_F10 = 0x79;
-            const uint MOD_CTRL = 0x0002;
             if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0, Key))
             {
                 // handle error

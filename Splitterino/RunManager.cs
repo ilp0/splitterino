@@ -21,8 +21,11 @@ namespace Splitterino
             if (!MainWindow.instance.runInProgress)
             {
                 MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass(""));
-                Run curRun = new Run();
-                curRun.game = MainWindow.instance.g;
+                /* Run curRun = new Run()
+                {
+                    game = MainWindow.instance.g
+                };
+                */
                 MainWindow.instance.sw.Start();
                 MainWindow.instance.dt.Start();
                 lastTime = MainWindow.instance.sw.Elapsed;
@@ -156,11 +159,11 @@ namespace Splitterino
             MainWindow.instance.Startbtn.IsEnabled = true;
             MainWindow.instance.Splitbtn.IsEnabled = true;
             MainWindow.instance.Stopbtn.IsEnabled = true;
+            MainWindow.instance.splitCountBuffer = 0;
             lastTime = MainWindow.instance.sw.Elapsed;
             CurrentSplitIndex = 0;
             CurrentRunSplits = new List<Split>();
             ClearUI();
-            MainWindow.instance.ScrollSplitViewToTop();
             MainWindow.instance.UpdateGUI(SPLT.LoadedGame, SPLT.LoadedGame.CategoryList[0]);
             MainWindow.instance.runInProgress = false;
         }

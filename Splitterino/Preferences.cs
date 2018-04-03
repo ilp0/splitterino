@@ -111,6 +111,12 @@ namespace Splitterino
                 if (DefaultGamePath != null)
                 {
                     SPLT.ReadAndPrint(DefaultGamePath);
+                } else
+                {
+                    MainWindow.instance.Startbtn.IsEnabled = false;
+                    MainWindow.instance.Resetbtn.IsEnabled = false;
+                    MainWindow.instance.Splitbtn.IsEnabled = false;
+                    MainWindow.instance.Stopbtn.IsEnabled = false;
                 }
             } catch
             {
