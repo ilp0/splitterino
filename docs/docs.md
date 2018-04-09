@@ -2,14 +2,14 @@
 
 ## Sisällysluettelo
 
-* [Tekijät](#Tekijät)
-* [Kuvaus](#Kuvaus)
-* [Kohdeyleisö](#Kohdeyleisö)
-* [Käyttöympäristö](#Käyttöympäristö)
-* [Toiminnot](#Toiminnot)
-* [Käsitemalli](#Käsitemalli)
-* [Työnjako](#Työnjako)
-* [Työaikasuunnitelma](#Työaikasuunnitelma)
+* [Tekijät](#tekijät)
+* [Kuvaus](#kuvaus)
+* [Kohdeyleisö](#kohdeyleisö)
+* [Käyttöympäristö](#käyttöympäristö)
+* [Toiminnot](#toiminnot)
+* [Käsitemalli](#käsitemalli)
+* [Työnjako](#työnjako)
+* [Työaikasuunnitelma](#työaikasuunnitelma)
 
 ## Tekijät
 
