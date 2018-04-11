@@ -37,7 +37,7 @@ Ohjelma on pääasiallisesti ajastin, mutta ohjelma sisältää paljon muita omi
 
 ## Käsitesuunnitelma
 
-\-
+!(Käsitemalli)[kmalli.png]
 
 ## Työnjako
 
@@ -54,6 +54,9 @@ Ohjelma on pääasiallisesti ajastin, mutta ohjelma sisältää paljon muita omi
 * I/O
 * Tämä Dokumentti
 
+#### Työtä on myös tehty paljon yhdessä samassa tilassa joten committeja on epätasaisesti. Kummatkin ovat tehneet työtä suurinpiirtein saman verran.
+
 ## Työaikasuunnitelma
 
-\-
+Harjoitustyö aloitettiin 12.3 suunnittelemalla projektia. 
+Harjoitustyötä on työstetty säännöllisen epäsäännöllisesti itsenäisesti ja yhdessä. 
