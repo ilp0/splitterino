@@ -36,8 +36,10 @@ Ohjelma on pääasiallisesti ajastin, mutta ohjelma sisältää paljon muita omi
 * Aikavertailu
 
 ## Käsitesuunnitelma
-
+(vanha)
 ![Käsitemalli](kmalli.png)
+Tiedostoon tallentaminen
+![Käsitemalli](kmalli2.png)
 
 ## Työnjako
 
