@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Splitterino"
         mc:Ignorable="d"
-        Title="Splitterino" Height="776.206" Width="374" ResizeMode="CanMinimize" Topmost="True">
+        Title="Splitterino" Height="776.206" Width="342.667" ResizeMode="CanMinimize" Topmost="True">
     <Grid Margin="0,0,4,0">
-        <TextBlock x:Name="MainTimerDisplay" Height="64" Margin="10,77,9.667,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
+        <TextBlock x:Name="MainTimerDisplay" Height="64" Margin="9,60,10.667,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" FontFamily="Segoe UI Emoji" FontSize="48" FontWeight="Bold" Text="00:00.00"/>
         <TabControl Margin="10,533,9.667,10" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Settings">
                 <Grid Background="#FFE5E5E5">
@@ -20,8 +20,8 @@
                         <ColumnDefinition Width="181*"/>
                         <ColumnDefinition Width="73*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="SelectSplitBtn" Content="Load split file..." Margin="0,10,9.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="98" Click="SelectSplitBtn_Click" Grid.Column="1" Grid.ColumnSpan="2"/>
-                    <TextBox x:Name="SplitFileName" Height="20" Margin="0,10,39.333,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="216"/>
+                    <Button x:Name="SelectSplitBtn" Content="Load split file..." Margin="0,10,9.333,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="74" Click="SelectSplitBtn_Click" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="SplitFileName" Height="20" Margin="0,10,18.957,0" TextWrapping="NoWrap" AcceptsReturn="False"  VerticalAlignment="Top" TextAlignment="Left" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="212"/>
                     <Button x:Name="NewSplitsBtn" Content="New Splits" Margin="147,35,9.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="NewSplitsBtn_Click" Grid.Column="1"/>
                     <Button x:Name="EditSplitsbtn" Content="Edit Splits" Margin="147,59,9.667,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="EditSplitsbtn_Click" Grid.Column="1"/>
                 </Grid>
@@ -50,31 +50,30 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="GameTitle" Height="49" Margin="10,10,10,0" TextWrapping="Wrap" Text="No Game Selected" VerticalAlignment="Top" TextAlignment="Center" FontSize="18"/>
-        <Separator Margin="10,54,10,636"/>
+        <TextBlock x:Name="GameTitle" Height="29" Margin="10,10,9.667,0" TextWrapping="Wrap" Text="No Game Selected" VerticalAlignment="Top" TextAlignment="Center" FontSize="18"/>
+        <Separator Margin="10,39,9.667,0" Height="58" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Height="28" Width="162" TextAlignment="Right" FontSize="16"/>
-        <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,59,9.667,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Height="28" Width="160" FontSize="16"/>
-        <Grid Margin="10,146,10,214">
-            <ItemsControl x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="88" Margin="0,27,0,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <ItemsControl x:Name="Splititemlist" Height="265" VerticalAlignment="Top" Margin="0,27,166.667,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+        <TextBlock x:Name="ConsoleTitle" HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" Text="Console" VerticalAlignment="Top" Height="28" Width="144" TextAlignment="Right" FontSize="16"/>
+        <TextBlock x:Name="CategoryTitle" HorizontalAlignment="Right" Margin="0,44,10.333,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" Height="28" Width="151" FontSize="16"/>
+        <Grid Margin="10,124,9.667,214">
+            <ItemsControl x:Name="elapsedtimeitem" HorizontalAlignment="Right" Height="318" VerticalAlignment="Top" Width="119" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14"/>
+            <ItemsControl x:Name="Splititemlist" Height="318" VerticalAlignment="Top" Margin="0,0,224,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14"/>
             <!--<ListBox x:Name="TargetTimeContainer" HorizontalAlignment="Right" Height="265" VerticalAlignment="Top" Width="85" Margin="0,27,166.667,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
             -->
-            <TextBlock HorizontalAlignment="Left" Margin="0,297,0,0" TextWrapping="Wrap" Text="Sum of Best" VerticalAlignment="Top" Width="88"/>
-            <TextBlock HorizontalAlignment="Left" Margin="133,297,0,0" TextWrapping="Wrap" Text="Target Time" VerticalAlignment="Top" Width="63"/>
-            <TextBlock HorizontalAlignment="Left" Margin="258,297,0,0" TextWrapping="Wrap" Text="PB" VerticalAlignment="Top" Width="19" RenderTransformOrigin="0.737,2.062"/>
-            <TextBlock Margin="0,6,9.667,0" TextWrapping="Wrap" Text="Current Run" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77"/>
-            <TextBlock x:Name="SOBTimeText" HorizontalAlignment="Left" Margin="0,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-            <TextBlock x:Name="TargetTimeText" HorizontalAlignment="Left" Margin="133,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-            <TextBlock x:Name="PBTimeText" HorizontalAlignment="Left" Margin="258,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
-            <Grid Margin="0,334,-0.333,1">
+            <TextBlock HorizontalAlignment="Left" Margin="-1,323,0,0" TextWrapping="Wrap" Text="Sum of Best" VerticalAlignment="Top" Width="88"/>
+            <TextBlock HorizontalAlignment="Left" Margin="94,323,0,0" TextWrapping="Wrap" Text="Target Time" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.476,0.562"/>
+            <TextBlock HorizontalAlignment="Left" Margin="195,323,0,0" TextWrapping="Wrap" Text="PB" VerticalAlignment="Top" Width="19" RenderTransformOrigin="0.737,2.062"/>
+            <TextBlock x:Name="SOBTimeText" HorizontalAlignment="Left" Margin="-1,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+            <TextBlock x:Name="TargetTimeText" HorizontalAlignment="Left" Margin="94,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+            <TextBlock x:Name="PBTimeText" HorizontalAlignment="Left" Margin="195,339,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+            <Grid Margin="0,360,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35*"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="46" VerticalAlignment="Top" Margin="-2,-1,267,0"/>
-                <Button x:Name="Stopbtn" Content="Pause/Continue" Margin="0,-1,162,0" VerticalAlignment="Top" Click="Stopbtn_Click" Height="46" HorizontalAlignment="Right" Width="100"/>
+                <Button x:Name="Startbtn" Content="Start new" Click="Startbtn_Click" Height="46" VerticalAlignment="Top" Margin="-2,-1,242.333,0"/>
+                <Button x:Name="Stopbtn" Content="Pause/Play" Margin="0,-1,162.333,0" VerticalAlignment="Top" Click="Stopbtn_Click" Height="46" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="Splitbtn" Content="Split" Margin="0,-1,82,0" Click="Splitbtn_Click" Height="46" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
                 <Button x:Name="Resetbtn" Content="Reset" Margin="0,-1,0,0" VerticalAlignment="Top" Click="Resetbtn_Click" Height="46" HorizontalAlignment="Right" Width="77"/>
 
@@ -86,8 +85,7 @@
                 <ComboBoxItem x:Name="ComboBoxBestSplit1" Content="Best" Selected="ComboBoxBestSplit_Selected"/>
             </ComboBox>
             -->
-            <ItemsControl x:Name="CurrentRunCmprListbox" Height="265" Margin="0,27,92.667,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="69" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-            <TextBlock Margin="0,6,84.667,0" TextWrapping="Wrap" Text="+/-" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77"/>
+            <ItemsControl x:Name="CurrentRunCmprListbox" Height="318" Margin="0,0,124,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14"/>
         </Grid>
 
     </Grid>

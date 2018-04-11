@@ -25,6 +25,7 @@ namespace Splitterino
         {
             if (!MainWindow.instance.runInProgress)
             {
+                MainWindow.instance.CurrentRunCmprListbox.Items.Add(new CompareTimeClass(""));
                 MainWindow.instance.sw.Start();
                 MainWindow.instance.dt.Start();
                 lastTime = MainWindow.instance.sw.Elapsed;
