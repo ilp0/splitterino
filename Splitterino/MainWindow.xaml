@@ -47,6 +47,8 @@
             <TabItem Header="Hotkeys">
                 <Grid Background="#FFE5E5E5">
                     <Grid HorizontalAlignment="Left" Width="338"/>
+                    <Button x:Name="set_split_key" Content="Numpad 0" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="66" Margin="96,10,0,0" Click="set_split_key_Click"/>
+                    <Label Content="Split Key" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="69"/>
                 </Grid>
             </TabItem>
         </TabControl>

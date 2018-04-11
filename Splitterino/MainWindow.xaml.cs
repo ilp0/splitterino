@@ -35,6 +35,9 @@ namespace Splitterino
         public bool runInProgress = false;
         public int splitCountBuffer = 0;
         string filename = "";
+
+        public int setHotkeyState = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -67,7 +70,18 @@ namespace Splitterino
                     List<Split> a = SPLT.LoadedGame.CategoryList[0].PBSplits.GetRange(0, RunManager.CurrentSplitIndex + 1);
                     if (RunManager.CurrentSplitIndex < SPLT.LoadedGame.CategoryList[0].PBSplits.Count) CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(a)), true);
                 }
-                CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex];
+                // TÄÄ ON RIKKI EN TIEDÄ MITÄ KOMMENTOIN AUTA
+                /*
+                    \ \    / /
+                     \ \  / /
+                      \ \/ /
+                       |  |     AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                      / /\ \
+                     / /  \ \
+                    / /    \ \
+                    (Vähän lisää rivejä committeihin)
+                */
+                //CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex];
                 MainTimerDisplay.Text = currentTime;
             }
         }
@@ -255,25 +269,50 @@ namespace Splitterino
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             const int WM_HOTKEY = 0x0312;
+            if (setHotkeyState != 0)
+            {
+                Key k = Hotkeys.IsKeyDown();
+                if (k != Key.None)
+                {
+                    Debug.WriteLine("Pressed key: " + k.ToString());
+
+                    switch (setHotkeyState)
+                    {
+                        case 1:
+                            Debug.WriteLine("KEYCODE: " + ((uint)k).ToString());
+                            Hotkeys.SplitHK = (uint)k;
+                            RegisterHotKey((uint)k);
+                            break;
+                    }
+
+                    setHotkeyState = 0;
+
+                    
+                }
+                
+            }
             switch (msg)
             {
                 case WM_HOTKEY:
                     switch (wParam.ToInt32())
                     {
                         case HOTKEY_ID:
-
-                            switch (lParam.ToInt64())
+                            /*
+                            long i64 = lParam.ToInt64();
+                            Debug.WriteLine(i64);
+                            if(i64 == Hotkeys.SplitHK)
                             {
-                                case Hotkeys.SplitHK:
-                                    RunManager.Split();
-                                    break;
-                                case Hotkeys.PauseHK:
-                                    RunManager.StopButtonClick();
-                                    break;
-                                case Hotkeys.ResetHK:
-                                    RunManager.Reset();
-                                    break;
+                                RunManager.Split();
                             }
+                            else if (i64 == Hotkeys.PauseHK)
+                            {
+                                RunManager.StopButtonClick();
+                            }
+                            else if (i64 == Hotkeys.ResetHK)
+                            {
+                                RunManager.Reset();
+                            }
+                            */
                             if (!runInProgress)
                             {
                                 RunManager.TimerStart();
@@ -281,6 +320,7 @@ namespace Splitterino
                             {
                                 RunManager.Split();
                             }
+                            
                             
                             handled = true;
                             break;
@@ -429,6 +469,15 @@ namespace Splitterino
         private void ShowMSChkBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Preferences.ShowMS = false;
+        }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            
+        }
+        private void set_split_key_Click(object sender, RoutedEventArgs e)
+        {
+            setHotkeyState = 1;
+            
         }
     }
 }
