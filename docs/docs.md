@@ -37,7 +37,7 @@ Ohjelma on pääasiallisesti ajastin, mutta ohjelma sisältää paljon muita omi
 
 ## Käsitesuunnitelma
 
-!(Käsitemalli)[kmalli.png]
+![Käsitemalli](kmalli.png)
 
 ## Työnjako
 
