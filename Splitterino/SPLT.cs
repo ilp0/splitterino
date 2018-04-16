@@ -27,10 +27,10 @@ namespace Splitterino
         {
                 try
                 {
-                    if (!Directory.Exists(Directory.GetCurrentDirectory() + "//Data//Games//"))
+                    if (!Directory.Exists(Directory.GetCurrentDirectory() + "/Data/Games/"))
                     {
-                        Directory.CreateDirectory(Directory.GetCurrentDirectory() + "//Data//Games//");
-                        Debug.WriteLine("created directory at " + Directory.GetCurrentDirectory() + "//Data//Games//");
+                        Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Data/Games/");
+                        Debug.WriteLine("created directory at " + Directory.GetCurrentDirectory() + "/Data/Games/");
                     }
                     Stream stream = File.Open(path + "\\" + game.GetName() + ".splg", FileMode.Create);
                     BinaryFormatter formatter = new BinaryFormatter();
@@ -47,10 +47,10 @@ namespace Splitterino
         {
             try
             {
-                if (!Directory.Exists(Directory.GetCurrentDirectory() + "//Data//Runs//"))
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "/Data/Runs/"))
                 {
-                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "//Data//Runs//");
-                    Debug.WriteLine("created directory at " + Directory.GetCurrentDirectory() + "//Data//Runs//");
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Data/Runs//");
+                    Debug.WriteLine("created directory at " + Directory.GetCurrentDirectory() + "/Data/Runs/");
                 }
                 Stream stream = File.Open(path + "\\" + run.TimeStamp.ToLongDateString() + "_" + run.Game.GetName() + ".splr", FileMode.Create);
                 BinaryFormatter formatter = new BinaryFormatter();
