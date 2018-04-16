@@ -47,16 +47,20 @@ namespace Splitterino
             Preferences.LoadPreferences();
             Debug.WriteLine(Directory.GetCurrentDirectory());
             dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            
-            
-        }
 
-        /// <summary>
-        /// DispatchTimer Tick, for stopwatch.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void dt_Tick(object sender, EventArgs e)
+			set_split_key.Content = KeyInterop.KeyFromVirtualKey((int)KeyConfig.Config.SplitHK).ToString();
+			set_start_key.Content = KeyInterop.KeyFromVirtualKey((int)KeyConfig.Config.StartHK).ToString();
+			set_reset_key.Content = KeyInterop.KeyFromVirtualKey((int)KeyConfig.Config.ResetHK).ToString();
+
+
+		}
+
+		/// <summary>
+		/// DispatchTimer Tick, for stopwatch.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		void dt_Tick(object sender, EventArgs e)
         {
             if (sw.IsRunning)
             {
@@ -73,17 +77,6 @@ namespace Splitterino
                         CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = SPLT.TimeSpanToString(SPLT.CompareTS(sw.Elapsed, SPLT.CountTotalTime(a)), true);
                     }
                 }
-                // TÄÄ ON RIKKI EN TIEDÄ MITÄ KOMMENTOIN AUTA
-                /*
-                    \ \    / /
-                     \ \  / /
-                      \ \/ /
-                       |  |     AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                      / /\ \
-                     / /  \ \
-                    / /    \ \
-                    (Vähän lisää rivejä committeihin)
-                */
                 //CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex] = CurrentRunCmprListbox.Items[RunManager.CurrentSplitIndex];
                 MainTimerDisplay.Text = currentTime;
             }
@@ -241,32 +234,37 @@ namespace Splitterino
             _source = HwndSource.FromHwnd(helper.Handle);
             _source.AddHook(HwndHook);
             //RegisterHotKey(Hotkeys.StartHK);
-            RegisterHotKey(Hotkeys.SplitHK);
-        }
+            RegisterHotKey(KeyConfig.Config.SplitHK, 9000);
+			RegisterHotKey(KeyConfig.Config.StartHK, 9001);
+			RegisterHotKey(KeyConfig.Config.ResetHK, 9002);
+		}
 
         protected override void OnClosed(EventArgs e)
         {
             Preferences.Serialize();
             _source.RemoveHook(HwndHook);
             _source = null;
-            UnregisterHotKey();
-            base.OnClosed(e);
+            UnregisterHotKey(9000);
+			UnregisterHotKey(9001);
+			UnregisterHotKey(9002);
+			KeyConfig.Config.Save();
+			base.OnClosed(e);
         }
 
-        private void RegisterHotKey(uint Key)
+        private void RegisterHotKey(uint Key, int hkey_id)
         {
             var helper = new WindowInteropHelper(this);
             //const uint VK_F10 = 0x79;
-            if (!RegisterHotKey(helper.Handle, HOTKEY_ID, 0, Key))
+            if (!RegisterHotKey(helper.Handle, hkey_id, 0, Key))
             {
                 // handle error
             }
         }
 
-        private void UnregisterHotKey()
+        private void UnregisterHotKey(int hotkey_id)
         {
             var helper = new WindowInteropHelper(this);
-            UnregisterHotKey(helper.Handle, HOTKEY_ID);
+            UnregisterHotKey(helper.Handle, hotkey_id);
         }
 
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -275,6 +273,22 @@ namespace Splitterino
             if (setHotkeyState != 0)
             {
                 Key k = Hotkeys.IsKeyDown();
+				if(k == Key.Escape)
+				{
+					switch (setHotkeyState)
+					{
+						case 1:
+							set_split_key.Content = "Not set";
+							break;
+						case 2:
+							set_start_key.Content = "Not set";
+							break;
+						case 3:
+							set_reset_key.Content = "Not set";
+							break;
+					}
+					setHotkeyState = 0;
+				}
                 if (k != Key.None)
                 {
                     Debug.WriteLine("Pressed key: " + k.ToString());
@@ -282,11 +296,24 @@ namespace Splitterino
                     switch (setHotkeyState)
                     {
                         case 1:
-                            Debug.WriteLine("KEYCODE: " + ((uint)k).ToString());
-                            Hotkeys.SplitHK = (uint)k;
-                            RegisterHotKey((uint)k);
+							UnregisterHotKey(Hotkeys.SplitID);
+							KeyConfig.Config.SplitHK = (uint)KeyInterop.VirtualKeyFromKey(k);
+                            RegisterHotKey(KeyConfig.Config.SplitHK, Hotkeys.SplitID);
+							set_split_key.Content = k.ToString();
                             break;
-                    }
+						case 2:
+							UnregisterHotKey(Hotkeys.StartID);
+							KeyConfig.Config.StartHK = (uint)KeyInterop.VirtualKeyFromKey(k);
+							RegisterHotKey(KeyConfig.Config.StartHK, Hotkeys.StartID);
+							set_start_key.Content = k.ToString();
+							break;
+						case 3:
+							UnregisterHotKey(Hotkeys.ResetID);
+							KeyConfig.Config.ResetHK = (uint)KeyInterop.VirtualKeyFromKey(k);
+							RegisterHotKey(KeyConfig.Config.ResetHK, Hotkeys.ResetID);
+							set_reset_key.Content = k.ToString();
+							break;
+					}
 
                     setHotkeyState = 0;
 
@@ -299,35 +326,45 @@ namespace Splitterino
                 case WM_HOTKEY:
                     switch (wParam.ToInt32())
                     {
-                        case HOTKEY_ID:
-                            /*
-                            long i64 = lParam.ToInt64();
-                            Debug.WriteLine(i64);
-                            if(i64 == Hotkeys.SplitHK)
-                            {
-                                RunManager.Split();
-                            }
-                            else if (i64 == Hotkeys.PauseHK)
-                            {
-                                RunManager.StopButtonClick();
-                            }
-                            else if (i64 == Hotkeys.ResetHK)
-                            {
-                                RunManager.Reset();
-                            }
-                            */
-                            if (!runInProgress)
-                            {
-                                RunManager.TimerStart();
-                            } else
-                            {
-                                RunManager.Split();
-                            }
+                        case 9000:
+
+							if (SPLT.LoadedGame != null)
+							{
+								if (!runInProgress)
+								{
+									RunManager.TimerStart();
+								}
+								else
+								{
+									RunManager.Split();
+								}
+							}
                             
                             
                             handled = true;
                             break;
-                    }
+						case 9001:
+							if (SPLT.LoadedGame != null)
+							{
+								if (!runInProgress)
+								{
+									RunManager.TimerStart();
+								}
+								else
+								{
+									RunManager.StopButtonClick();
+								}
+							}
+							
+							break;
+						case 9002:
+							if (SPLT.LoadedGame != null)
+							{
+								RunManager.Reset();
+							}
+
+							break;
+					}
                     break;
             }
             return IntPtr.Zero;
@@ -480,8 +517,21 @@ namespace Splitterino
         private void set_split_key_Click(object sender, RoutedEventArgs e)
         {
             setHotkeyState = 1;
-            
-        }
-    }
+			set_split_key.Content = "Press any key";
+
+		}
+
+		private void set_start_key_Click(object sender, RoutedEventArgs e)
+		{
+			setHotkeyState = 2;
+			set_start_key.Content = "Press any key";
+		}
+
+		private void set_reset_key_Click(object sender, RoutedEventArgs e)
+		{
+			setHotkeyState = 3;
+			set_reset_key.Content = "Press any key";
+		}
+	}
 }
 
