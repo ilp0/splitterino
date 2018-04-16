@@ -370,11 +370,6 @@ namespace Splitterino
             return IntPtr.Zero;
         }
 
-        private void OnHotKeyPressed()
-        {
-            RunManager.Split();
-        }
-
         private void WindowAlwaysOnTopCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             Preferences.WindowAlwaysOnTop = true;
