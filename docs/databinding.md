@@ -2,7 +2,7 @@
 
 ## Mitä on data binding
 
-Data Binding on prosessi joka yhdistää ohjelman käyttöliittymän ja logiikan. Tieto voidaan sitoa käyttöliittymän kenttään, että kentän arvo muuttuu samalla kun kenttään sidottu tieto muuttuuu.
+Data Binding on prosessi joka yhdistää ohjelman käyttöliittymän ja logiikan. Tieto voidaan sitoa käyttöliittymän kenttään, että kentän arvo muuttuu samalla kun kenttään sidottu tieto muuttuuu. Voit myös käyttää data bindingiä toiseen suuntaan, eli kun kentän arvo muuttuu, niin myös data muuttuu samalla.
 
 ## Mihin käytetään
 
@@ -18,3 +18,10 @@ Data bindingiä voidaan käyttää WPF ympäristössä lisäämällä XAML tiedo
 ```
 
 Tämä lisää käyttöliittymään TextBox elementin, joka on nimetty "SourceText" nimellä, ja TextBlock elementin, jonka attribuutissa "Text" määritellään datatyyppi sekä lähde.
+
+Sama Kaksisuuntaisella bindingillä:
+
+```
+<TextBox Name="textBox" Text ="{Binding ElementName=listBox, Path=SelectedItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding ElementName=listBox, Path=SelectedItem.Content, Mode=OneWay}">
+```
+
